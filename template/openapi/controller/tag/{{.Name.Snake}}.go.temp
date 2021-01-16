@@ -1,0 +1,11 @@
+package {{.Name.Snake}}
+
+import "git.code.oa.com/leoshli/code-generator/service/{{.Name.Snake}}"
+
+var (
+	server *{{.Name.UnexportedCamel}}.Server
+)
+
+func init() {
+	server = {{.Name.UnexportedCamel}}.NewServer()
+}

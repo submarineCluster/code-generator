@@ -1,0 +1,54 @@
+package model
+
+import "git.code.oa.com/leoshli/code-generator/params"
+
+//{{.Name.ExportedCamel}}Model ...
+type {{.Name.ExportedCamel}}Model struct {
+	ID                *int64              `gorm:"column:id"`
+	Name              *string             `gorm:"column:name"`
+	ValueType         *params.ValueType   `gorm:"column:type"`
+	OperateType       *params.OperateType `gorm:"column:operator"`
+	PID               *int64              `gorm:"column:p_id"`
+	BusinessProfileID *string             `gorm:"column:bp_id"` // 业务侧对应profileID
+	Status            *params.Status      `gorm:"column:status"`
+	CreateTime        *string             `gorm:"column:create_time"`
+	BusinessID        *int64              `gorm:"column:business_id"`
+	Comment           *string             `gorm:"column:comment"`
+}
+
+//TableName ...
+func (t {{.Name.ExportedCamel}}Model) TableName() string {
+	return "t_issue_item"
+}
+
+//Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model ...
+func Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model({{.Name.UnexportedCamel}} *params.{{.Name.ExportedCamel}}) (*{{.Name.ExportedCamel}}Model, error) {
+	return &{{.Name.ExportedCamel}}Model{
+		ID:                &{{.Name.UnexportedCamel}}.ID,
+		Name:              &{{.Name.UnexportedCamel}}.Name,
+		ValueType:         &{{.Name.UnexportedCamel}}.ValueType,
+		OperateType:       &{{.Name.UnexportedCamel}}.OperateType,
+		PID:               &{{.Name.UnexportedCamel}}.PID,
+		BusinessProfileID: &{{.Name.UnexportedCamel}}.BusinessProfileID,
+		Status:            &{{.Name.UnexportedCamel}}.Status,
+		CreateTime:        &{{.Name.UnexportedCamel}}.CreateTime,
+		BusinessID:        &{{.Name.UnexportedCamel}}.BusinessID,
+		Comment:           &{{.Name.UnexportedCamel}}.Comment,
+	}, nil
+}
+
+//Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}} ...
+func (t *{{.Name.ExportedCamel}}Model) Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}}() (*params.{{.Name.ExportedCamel}}, error) {
+	return &params.{{.Name.ExportedCamel}}{
+		ID:                *t.ID,
+		Name:              *t.Name,
+		ValueType:         *t.ValueType,
+		OperateType:       *t.OperateType,
+		PID:               *t.PID,
+		BusinessProfileID: *t.BusinessProfileID,
+		Status:            *t.Status,
+		CreateTime:        *t.CreateTime,
+		BusinessID:        *t.BusinessID,
+		Comment:           *t.Comment,
+	}, nil
+}

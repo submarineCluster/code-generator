@@ -1,0 +1,48 @@
+package {{.Name.Snake}}
+
+import "github.com/jinzhu/gorm"
+
+//Dao ...
+type Dao struct {
+	DB *gorm.DB
+}
+
+//NewDao ...
+func NewDao(db *gorm.DB) *Dao {
+	return &Dao{DB: db}
+}
+
+//QueryOption ...
+type QueryOption func(db *gorm.DB) *gorm.DB
+
+//CommonQueryOption ...
+func CommonQueryOption(k string, value interface{}) QueryOption {
+	return func(db *gorm.DB) *gorm.DB {
+		return db.Where(k, value)
+	}
+}
+
+//LimitQueryOption ...
+func LimitQueryOption(limit int64) QueryOption {
+	return func(db *gorm.DB) *gorm.DB {
+		if limit <= 0 {
+			return db
+		}
+		return db.Limit(limit)
+	}
+}
+
+//OffsetQueryOption ...
+func OffsetQueryOption(offset int64) QueryOption {
+	return func(db *gorm.DB) *gorm.DB {
+		if offset <= 0 {
+			return db
+		}
+		return db.Offset(offset)
+	}
+}
+
+const (
+	defaultOffset = 0
+	defaultLimit  = 10
+)

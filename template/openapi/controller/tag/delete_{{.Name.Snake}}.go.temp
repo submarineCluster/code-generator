@@ -1,0 +1,8 @@
+package {{.Name.Snake}}
+
+import "github.com/gin-gonic/gin"
+
+// Delete{{.Name.ExportedCamel}} ...
+func Delete{{.Name.ExportedCamel}}(ctx *gin.Context) {
+
+}

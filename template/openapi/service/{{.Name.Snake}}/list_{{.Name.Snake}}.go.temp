@@ -1,0 +1,50 @@
+package {{.Name.Snake}}
+
+import (
+	"fmt"
+
+	{{.Name.Snake}}_dao "git.code.oa.com/leoshli/code-generator/dao/{{.Name.Snake}}"
+	"git.code.oa.com/leoshli/code-generator/database"
+	"git.code.oa.com/leoshli/code-generator/params"
+	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
+)
+
+//List ...
+func (s *Server) List(ctx *gin.Context, req *params.List{{.Name.ExportedCamel}}Req) ([]*params.{{.Name.ExportedCamel}}, error) {
+	d := {{.Name.Snake}}_dao.NewDao(database.Tx(ctx))
+
+	var opts []{{.Name.Snake}}_dao.QueryOption
+	opts = append(opts, {{.Name.Snake}}_dao.LimitQueryOption(req.Limit))
+	opts = append(opts, {{.Name.Snake}}_dao.OffsetQueryOption(req.Offset))
+
+	for key, value := range req.Where {
+		field := getFieldByKey(key)
+		if len(field) > 0 {
+			opts = append(opts, {{.Name.Snake}}_dao.CommonQueryOption(fmt.Sprintf("%v = ?", field), value)) // TODO 支持更多操作
+		}
+	}
+
+	{{.Name.UnexportedCamel}}ModelList, err := d.List(opts...)
+	if err != nil {
+		return nil, errors.Wrapf(err, "List fail")
+	}
+
+	var resultList []*params.{{.Name.ExportedCamel}}
+	for i := range {{.Name.UnexportedCamel}}ModelList {
+		item, err := {{.Name.UnexportedCamel}}ModelList[i].Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}}()
+		if err != nil {
+			return nil, errors.Wrapf(err, "Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}} fail:#%v", err)
+		}
+		resultList = append(resultList, item)
+	}
+
+	return resultList, nil
+}
+
+func getFieldByKey(key string) string {
+	if result, ok := FieldMapping[key]; ok {
+		return result
+	}
+	return ""
+}

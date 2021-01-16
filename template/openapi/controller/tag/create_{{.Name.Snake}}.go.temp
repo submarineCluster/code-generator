@@ -1,0 +1,46 @@
+package {{.Name.Snake}}
+
+import (
+	"git.code.oa.com/leoshli/code-generator/enum"
+	"git.code.oa.com/leoshli/code-generator/params"
+	"git.code.oa.com/leoshli/code-generator/utils"
+	"git.code.oa.com/trpc-go/trpc-go/log"
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/pkg/errors"
+)
+
+// Create{{.Name.ExportedCamel}} ...
+func Create{{.Name.ExportedCamel}}(ctx *gin.Context) {
+
+	create{{.Name.ExportedCamel}}Req := &params.Create{{.Name.ExportedCamel}}Req{}
+	err := ctx.ShouldBindBodyWith(create{{.Name.ExportedCamel}}Req, binding.JSON)
+	if err != nil {
+		log.InfoContextf(ctx, "ShouldBindBodyWith fail:%v", err)
+		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		return
+	}
+
+	err = validateCreate(create{{.Name.ExportedCamel}}Req)
+	if err != nil {
+		log.InfoContextf(ctx, "validateCreate fail:%v", err)
+		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		return
+	}
+
+	{{.Name.ExportedCamel}}, err := server.Create(ctx, create{{.Name.ExportedCamel}}Req.{{.Name.ExportedCamel}})
+	if err != nil {
+		log.InfoContextf(ctx, "service Create fail:%v", err)
+		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		return
+	}
+	utils.ResponseSuccess(ctx, {{.Name.ExportedCamel}})
+	return
+}
+
+func validateCreate(create{{.Name.ExportedCamel}}Req *params.Create{{.Name.ExportedCamel}}Req) error {
+	if create{{.Name.ExportedCamel}}Req == nil || create{{.Name.ExportedCamel}}Req.{{.Name.ExportedCamel}} == nil {
+		return errors.Errorf("required create{{.Name.ExportedCamel}}Req")
+	}
+	return nil
+}

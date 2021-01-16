@@ -1,0 +1,48 @@
+/*Package model generator by code-generator JUST EDIT
+*/
+package model
+
+import "git.code.oa.com/leoshli/code-component/model/meta"
+
+//{{.Name.ExportedCamel}} ....
+//{{.Common.ObjectMark}}
+type {{.Name.ExportedCamel}} struct {
+	meta.ObjectMeta `json:",inline" bson:",inline" db:",inline"`
+}
+
+//DbName ....
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) DbName() string {
+	return ""
+}
+
+//TableName ....
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) TableName() string {
+	return "db_" + "{{.Name.Snake}}"
+}
+
+//PK ....
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) PK() string {
+	return "id"
+}
+
+// const ...
+const (
+	ObjectKind meta.ObjectKind = "{{.Name.ExportedCamel}}"
+	APIVersion meta.APIVersion = "api/v1"
+)
+
+//{{.Name.ExportedCamelList}} ...
+type {{.Name.ExportedCamelList}} struct {
+	meta.ListMeta `json:",inline" bson:",inline"`
+	Items         []*{{.Name.ExportedCamel}} `json:"items"`
+}
+
+// New{{.Name.ExportedCamel}} ...
+func New{{.Name.ExportedCamel}}() *{{.Name.ExportedCamel}} {
+    return &{{.Name.ExportedCamel}}{}
+}
+
+// New{{.Name.ExportedCamel}}List ...
+func New{{.Name.ExportedCamel}}List() *{{.Name.ExportedCamelList}} {
+    return &{{.Name.ExportedCamelList}}{}
+}

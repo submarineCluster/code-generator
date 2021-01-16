@@ -1,0 +1,24 @@
+package {{.Name.Snake}}
+
+import (
+	"git.code.oa.com/leoshli/code-generator/model"
+	"github.com/pkg/errors"
+)
+
+//Create ...
+func (d *Dao) Get(id int64, opts ...QueryOption) (*model.{{.Name.ExportedCamel}}Model, error) {
+
+	{{.Name.UnexportedCamel}}Model := &model.{{.Name.ExportedCamel}}Model{}
+	dbModel := d.DB
+	dbModel = dbModel.Where("id = ?", id)
+
+	for _, opt := range opts {
+		dbModel = opt(dbModel)
+	}
+
+	err := dbModel.First({{.Name.UnexportedCamel}}Model).Error
+	if err != nil {
+		return nil, errors.Wrapf(err, "first fail")
+	}
+	return {{.Name.UnexportedCamel}}Model, nil
+}

@@ -1,0 +1,26 @@
+package {{.Name.Snake}}
+
+import (
+	package {{.Name.Snake}}_dao "git.code.oa.com/leoshli/code-generator/dao/package {{.Name.Snake}}"
+	"git.code.oa.com/leoshli/code-generator/database"
+	"git.code.oa.com/leoshli/code-generator/model"
+	"git.code.oa.com/leoshli/code-generator/params"
+	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
+)
+
+//Update ...
+func (s *Server) Update(ctx *gin.Context, {{.Name.UnexportedCamel}} *params.{{.Name.ExportedCamel}}) (*params.{{.Name.ExportedCamel}}, error) {
+	d := package {{.Name.Snake}}_dao.NewDao(database.Tx(ctx))
+
+	{{.Name.UnexportedCamel}}Model, err := model.Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model({{.Name.UnexportedCamel}})
+	if err != nil {
+		return nil, errors.Wrapf(err, "Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model fail")
+	}
+	{{.Name.UnexportedCamel}}Model, err = d.Update({{.Name.UnexportedCamel}}Model)
+	if err != nil {
+		return nil, errors.Wrapf(err, "Update fail")
+	}
+
+	return {{.Name.UnexportedCamel}}Model.Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}}()
+}

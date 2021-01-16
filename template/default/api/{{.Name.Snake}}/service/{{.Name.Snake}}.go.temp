@@ -1,0 +1,20 @@
+/*Package service generator by code-generator JUST EDIT
+*/
+package service
+
+import (
+	"context"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"git.code.oa.com/leoshli/code-component/model/meta"
+	"git.code.oa.com/leoshli/code-component/model/option"
+)
+
+//Server ...
+//{{.Common.ServerMark}}
+type Server interface {
+	Create(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error)
+	Update(ctx context.Context, id meta.ID, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error)
+	Get(ctx context.Context, id meta.ID, o *option.GetOption) (*model.{{.Name.ExportedCamel}}, error)
+	List(ctx context.Context, o *option.ListOption, opts ...dao.ListOption) (*model.{{.Name.ExportedCamelList}}, error)
+	Delete(ctx context.Context, id meta.ID, o *option.DeleteOption) error
+}

@@ -1,0 +1,31 @@
+package params
+
+import (
+	"encoding/json"
+	"testing"
+
+	"github.com/go-playground/validator/v10"
+)
+
+func Test{{.Name.ExportedCamel}}(t *testing.T) {
+	{{.Name.UnexportedCamel}} := {{.Name.ExportedCamel}}{
+		ID:                0,
+		Name:              "demo",
+		ValueType:         1,
+		OperateType:       6,
+		BusinessProfileID: "dss",
+	}
+
+	body, err := json.Marshal({{.Name.UnexportedCamel}})
+	if err != nil {
+		t.Fatalf("json Marshal fail:%v", err)
+	}
+	t.Logf("%s", body)
+
+	v := validator.New()
+	v.SetTagName("binding")
+	err = v.Struct({{.Name.UnexportedCamel}})
+	if err != nil {
+		t.Fatalf("struct fail:%v", err)
+	}
+}

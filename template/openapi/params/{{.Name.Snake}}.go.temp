@@ -1,0 +1,72 @@
+package params
+
+// {{.Name.ExportedCamel}} ...
+type {{.Name.ExportedCamel}} struct {
+	ID                int64       `json:"id"`
+	Name              string      `json:"name" binding:"required"`
+	ValueType         ValueType   `json:"valueType" binding:"required,min=1,max=2"`
+	OperateType       OperateType `json:"operateType,string" binding:"required,min=1,max=5"`
+	PID               int64       `json:"pid"`                                  // TODO how to check???
+	BusinessProfileID string      `json:"businessProfileId" binding:"required"` // 业务侧对应profileID
+	Status            Status      `json:"status"`
+	CreateTime        string      `json:"createTime"`
+	BusinessID        int64       `json:"businessId"`
+	Comment           string      `json:"comment"`
+}
+
+//ValueType 标签值类型 1 字符型 2 数值型
+type ValueType int64
+
+const (
+	ValueTypeString ValueType = 1
+	ValueTypeNumber ValueType = 2
+)
+
+//OperateType 操作类型
+type OperateType int64
+
+// const ...
+const (
+	OperateTypeLte  OperateType = 1 // 1 小于等于
+	OperateTypeLCRO OperateType = 2 // 2 左闭右开
+	OperateTypeLCRC OperateType = 3 // 3 闭区间
+	OperateTypeLORC OperateType = 4 // 4 左开右闭
+	OperateTypeGte  OperateType = 5 // 5 大于等于
+)
+
+//Status 0 无效 1 有效
+type Status int64
+
+// const ...
+const (
+	InvalidStatus Status = iota
+	ActivityStatus
+)
+
+//Create{{.Name.ExportedCamel}}Req ...
+type Create{{.Name.ExportedCamel}}Req struct {
+	{{.Name.ExportedCamel}} *{{.Name.ExportedCamel}} `json:"{{.Name.UnexportedCamel}}" binding:"required"`
+}
+
+//Get{{.Name.ExportedCamel}}Req ...
+type Get{{.Name.ExportedCamel}}Req struct {
+	ID    int64                  `json:"id" binding:"required"`
+	Where map[string]interface{} `json:"where"`
+}
+
+//List{{.Name.ExportedCamel}}Req ...
+type List{{.Name.ExportedCamel}}Req struct {
+	ListMeta
+	Where map[string]interface{} `json:"where"`
+}
+
+type List{{.Name.ExportedCamel}}Resp struct {
+	ListMeta
+	Total   int64  `json:"total"`
+	{{.Name.ExportedCamel}}List []*{{.Name.ExportedCamel}} `json:"{{.Name.UnexportedCamel}}List"`
+}
+
+//Update{{.Name.ExportedCamel}}Req ...
+type Update{{.Name.ExportedCamel}}Req struct {
+	{{.Name.ExportedCamel}} *{{.Name.ExportedCamel}} `json:"{{.Name.UnexportedCamel}}"`
+}

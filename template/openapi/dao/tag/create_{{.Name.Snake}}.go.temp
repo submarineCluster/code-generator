@@ -1,0 +1,19 @@
+package {{.Name.Snake}}
+
+import (
+	"time"
+
+	"git.code.oa.com/leoshli/code-generator/model"
+	"github.com/pkg/errors"
+)
+
+//Create ...
+func (d *Dao) Create({{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}Model) (*model.{{.Name.ExportedCamel}}Model, error) {
+
+	*{{.Name.UnexportedCamel}}.CreateTime = time.Now().Format("2006-01-02 15:04:05") // TODO timezone
+	err := d.DB.Create({{.Name.UnexportedCamel}}).Error
+	if err != nil {
+		return nil, errors.Wrapf(err, "create fail")
+	}
+	return {{.Name.UnexportedCamel}}, nil
+}

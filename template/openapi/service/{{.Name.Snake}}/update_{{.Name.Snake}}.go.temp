@@ -1,7 +1,7 @@
 package {{.Name.Snake}}
 
 import (
-	{{.Name.Snake}}_dao "{{.ModuleName}}/dao/package {{.Name.Snake}}"
+	{{.Name.Snake}}_dao "{{.ModuleName}}/dao/{{.Name.Snake}}"
 	"{{.ModuleName}}/database"
 	"{{.ModuleName}}/model"
 	"{{.ModuleName}}/params"
@@ -11,7 +11,7 @@ import (
 
 //Update ...
 func (s *Server) Update(ctx *gin.Context, {{.Name.UnexportedCamel}} *params.{{.Name.ExportedCamel}}) (*params.{{.Name.ExportedCamel}}, error) {
-	d := package {{.Name.Snake}}_dao.NewDao(database.Tx(ctx))
+	d := {{.Name.Snake}}_dao.NewDao(database.Tx(ctx))
 
 	{{.Name.UnexportedCamel}}Model, err := model.Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model({{.Name.UnexportedCamel}})
 	if err != nil {

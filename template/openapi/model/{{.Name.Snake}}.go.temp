@@ -17,16 +17,5 @@ func Change{{.Name.ExportedCamel}}2{{.Name.ExportedCamel}}Model({{.Name.Unexport
 
 //Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}} ...
 func (t *{{.Name.ExportedCamel}}Model) Change{{.Name.ExportedCamel}}Model2{{.Name.ExportedCamel}}() (*params.{{.Name.ExportedCamel}}, error) {
-	return &params.{{.Name.ExportedCamel}}{
-		ID:                *t.ID,
-		Name:              *t.Name,
-		ValueType:         *t.ValueType,
-		OperateType:       *t.OperateType,
-		PID:               *t.PID,
-		BusinessProfileID: *t.BusinessProfileID,
-		Status:            *t.Status,
-		CreateTime:        *t.CreateTime,
-		BusinessID:        *t.BusinessID,
-		Comment:           *t.Comment,
-	}, nil
+	return &params.{{.Name.ExportedCamel}}{}, nil
 }

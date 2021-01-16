@@ -4,7 +4,7 @@ import "{{.ModuleName}}/dao/{{.Name.Snake}}"
 
 //Server ...
 type Server struct {
-	D *{{.Name.UnexportedCamel}}.Dao
+	D *{{.Name.Snake}}.Dao
 }
 
 //NewServer ...

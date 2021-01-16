@@ -28,18 +28,7 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 		req.Header.Set("romaAPIToken", "f8f491836d7e10f0879c2ca2e59155f83cce081fc913909288d68062164dc6f74383ba51043cfddd625db36b289e7039b51f0aa7a1ebcab061b498f4b37f52242384765e376718f08b31bef548b01a82")
 	}
 	t.Run("Create", func(t *testing.T) {
-		{{.Name.UnexportedCamel}} := &params.{{.Name.ExportedCamel}}{
-			ID:                0,
-			Name:              "unit_test",
-			ValueType:         params.ValueTypeNumber,
-			OperateType:       params.OperateTypeGte,
-			PID:               0,
-			BusinessProfileID: "95",
-			Status:            0,
-			CreateTime:        "",
-			BusinessID:        0,
-			Comment:           "",
-		}
+		{{.Name.UnexportedCamel}} := &params.{{.Name.ExportedCamel}}{}
 		create{{.Name.ExportedCamel}}Req := params.Create{{.Name.ExportedCamel}}Req{ {{.Name.ExportedCamel}}: {{.Name.UnexportedCamel}} }
 		body, err := json.Marshal(create{{.Name.ExportedCamel}}Req)
 		if err != nil {
@@ -113,18 +102,8 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 	})
 
 	t.Run("Update", func(t *testing.T) {
-		{{.Name.UnexportedCamel}} := &params.{{.Name.ExportedCamel}}{
-			ID:                47,
-			Name:              "城市",
-			ValueType:         params.ValueTypeString,
-			OperateType:       params.OperateTypeLte,
-			PID:               0,
-			BusinessProfileID: `["100"]`,
-			Status:            1,
-			CreateTime:        time.Now().Format("2006-01-02 15:04:05"),
-			BusinessID:        82,
-			Comment:           "城市下发",
-		}
+		{{.Name.UnexportedCamel}} := &params.{{.Name.ExportedCamel}}{}
+
 		update{{.Name.ExportedCamel}}Req := params.Update{{.Name.ExportedCamel}}Req{ {{.Name.ExportedCamel}}: {{.Name.UnexportedCamel}} }
 		body, err := json.Marshal(update{{.Name.ExportedCamel}}Req)
 		if err != nil {

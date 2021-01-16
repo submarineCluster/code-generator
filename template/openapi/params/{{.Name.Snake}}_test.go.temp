@@ -8,13 +8,7 @@ import (
 )
 
 func Test{{.Name.ExportedCamel}}(t *testing.T) {
-	{{.Name.UnexportedCamel}} := {{.Name.ExportedCamel}}{
-		ID:                0,
-		Name:              "demo",
-		ValueType:         1,
-		OperateType:       6,
-		BusinessProfileID: "dss",
-	}
+	{{.Name.UnexportedCamel}} := {{.Name.ExportedCamel}}{}
 
 	body, err := json.Marshal({{.Name.UnexportedCamel}})
 	if err != nil {

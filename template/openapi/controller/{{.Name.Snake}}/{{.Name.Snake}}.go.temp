@@ -3,9 +3,9 @@ package {{.Name.Snake}}
 import "{{.ModuleName}}/service/{{.Name.Snake}}"
 
 var (
-	server *{{.Name.UnexportedCamel}}.Server
+	server *{{.Name.Snake}}.Server
 )
 
 func init() {
-	server = {{.Name.UnexportedCamel}}.NewServer()
+	server = {{.Name.Snake}}.NewServer()
 }

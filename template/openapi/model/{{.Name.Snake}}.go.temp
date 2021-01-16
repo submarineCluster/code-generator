@@ -1,6 +1,6 @@
 package model
 
-import "git.code.oa.com/leoshli/code-generator/params"
+import "{{.ModuleName}}/params"
 
 //{{.Name.ExportedCamel}}Model ...
 type {{.Name.ExportedCamel}}Model struct {

@@ -3,7 +3,7 @@ package {{.Name.Snake}}
 import (
 	"time"
 
-	"git.code.oa.com/leoshli/code-generator/model"
+	"{{.ModuleName}}/model"
 	"github.com/pkg/errors"
 )
 

@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"git.code.oa.com/leoshli/code-generator/params"
+	"{{.ModuleName}}/params"
 )
 
 func Test{{.Name.ExportedCamel}}API(t *testing.T) {

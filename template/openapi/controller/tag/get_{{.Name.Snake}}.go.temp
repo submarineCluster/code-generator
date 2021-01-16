@@ -3,9 +3,9 @@ package {{.Name.Snake}}
 import (
 	"strconv"
 
-	"git.code.oa.com/leoshli/code-generator/enum"
-	"git.code.oa.com/leoshli/code-generator/params"
-	"git.code.oa.com/leoshli/code-generator/utils"
+	"{{.ModuleName}}/enum"
+	"{{.ModuleName}}/params"
+	"{{.ModuleName}}/utils"
 	"git.code.oa.com/trpc-go/trpc-go/log"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"

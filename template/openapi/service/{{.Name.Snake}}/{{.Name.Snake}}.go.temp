@@ -1,6 +1,6 @@
 package {{.Name.Snake}}
 
-import "git.code.oa.com/leoshli/code-generator/dao/{{.Name.Snake}}"
+import "{{.ModuleName}}/dao/{{.Name.Snake}}"
 
 //Server ...
 type Server struct {

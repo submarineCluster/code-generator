@@ -1,10 +1,10 @@
 package {{.Name.Snake}}
 
 import (
-	{{.Name.Snake}}_dao "git.code.oa.com/leoshli/code-generator/dao/{{.Name.Snake}}"
-	"git.code.oa.com/leoshli/code-generator/database"
-	"git.code.oa.com/leoshli/code-generator/model"
-	"git.code.oa.com/leoshli/code-generator/params"
+	{{.Name.Snake}}_dao "{{.ModuleName}}/dao/{{.Name.Snake}}"
+	"{{.ModuleName}}/database"
+	"{{.ModuleName}}/model"
+	"{{.ModuleName}}/params"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )

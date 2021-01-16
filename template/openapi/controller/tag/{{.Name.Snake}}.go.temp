@@ -1,6 +1,6 @@
 package {{.Name.Snake}}
 
-import "git.code.oa.com/leoshli/code-generator/service/{{.Name.Snake}}"
+import "{{.ModuleName}}/service/{{.Name.Snake}}"
 
 var (
 	server *{{.Name.UnexportedCamel}}.Server

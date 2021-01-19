@@ -17,7 +17,7 @@ func List{{.Name.ExportedCamel}}(ctx *gin.Context) {
 	getListMeta(ctx, req)
 
 	req.Where = make(map[string]interface{})
-	for key := range {{.Name.UnexportedCamel}}.FieldMapping {
+	for key := range {{.Name.Snake}}.FieldMapping {
 		if len(ctx.Query(key)) > 0 {
 			req.Where[key] = ctx.Query(key)
 		}

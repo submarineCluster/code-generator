@@ -8,6 +8,8 @@ import (
 	"testing"
 	"time"
 
+	"moul.io/http2curl"
+
 	"{{.ModuleName}}/params"
 )
 
@@ -41,6 +43,14 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 		}
 		headerHandler(req)
 
+		command, err := http2curl.GetCurlCommand(req)
+        if err != nil {
+            t.Fatalf("GetCurlCommand fail:%v", err)
+        }
+
+        t.Logf("%s", body)
+        t.Logf("%v", command)
+
 		resp, err := client.Do(req)
 		if err != nil {
 			t.Fatalf("client Do:%v", err)
@@ -62,6 +72,12 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 			t.Fatalf("NewRequest fail:%v", err)
 		}
 		headerHandler(req)
+
+		command, err := http2curl.GetCurlCommand(req)
+        if err != nil {
+            t.Fatalf("GetCurlCommand fail:%v", err)
+        }
+        t.Logf("%v", command)
 
 		resp, err := client.Do(req)
 		if err != nil {
@@ -85,6 +101,12 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 			t.Fatalf("NewRequest fail:%v", err)
 		}
 		headerHandler(req)
+
+		command, err := http2curl.GetCurlCommand(req)
+        if err != nil {
+            t.Fatalf("GetCurlCommand fail:%v", err)
+        }
+        t.Logf("%v", command)
 
 		resp, err := client.Do(req)
 		if err != nil {
@@ -115,6 +137,14 @@ func Test{{.Name.ExportedCamel}}API(t *testing.T) {
 			t.Fatalf("NewRequest fail:%v", err)
 		}
 		headerHandler(req)
+
+		command, err := http2curl.GetCurlCommand(req)
+        if err != nil {
+            t.Fatalf("GetCurlCommand fail:%v", err)
+        }
+
+        t.Logf("%s", body)
+        t.Logf("%v", command)
 
 		resp, err := client.Do(req)
 		if err != nil {

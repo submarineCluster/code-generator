@@ -22,7 +22,7 @@ func Update{{.Name.ExportedCamel}}(ctx *gin.Context) {
 
 	err = validateUpdate(update{{.Name.ExportedCamel}}Req)
 	if err != nil {
-		log.InfoContextf(ctx, "validateCreate fail:%v", err)
+		log.InfoContextf(ctx, "validateUpdate fail:%v", err)
 		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
 		return
 	}

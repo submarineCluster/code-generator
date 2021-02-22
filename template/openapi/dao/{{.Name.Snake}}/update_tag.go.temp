@@ -19,9 +19,6 @@ func (d *Dao) Update({{.Name.UnexportedCamel}}Model *model.{{.Name.ExportedCamel
 		return nil, errors.Wrapf(result.Error, "update fail")
 	}
 
-	if result.RowsAffected <= 0 {
-		return nil, errors.Errorf("not found")
-	}
 	return {{.Name.UnexportedCamel}}Model, nil
 }
 

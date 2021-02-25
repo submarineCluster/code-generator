@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"git.code.oa.com/leoshli/code-generator/cmd/model"
-	"git.code.oa.com/leoshli/code-generator/conf"
 	"github.com/markbates/pkger"
 	"github.com/pkg/errors"
+
+	"git.code.oa.com/leoshli/code-generator/cmd/model"
+	"git.code.oa.com/leoshli/code-generator/conf"
 )
 
 // const ...

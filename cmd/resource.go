@@ -27,10 +27,11 @@ import (
 
 	"git.code.oa.com/leoshli/code-generator/ldflags"
 
+	"github.com/spf13/cobra"
+
 	"git.code.oa.com/leoshli/code-generator/cmd/resource"
 	"git.code.oa.com/leoshli/code-generator/conf"
 	"git.code.oa.com/leoshli/code-generator/utils/log"
-	"github.com/spf13/cobra"
 )
 
 // resourceCmd represents the resource command

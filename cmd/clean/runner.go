@@ -3,8 +3,9 @@ package clean
 import (
 	"fmt"
 
-	"git.code.oa.com/leoshli/code-generator/cmd/model"
 	"github.com/spf13/cobra"
+
+	"git.code.oa.com/leoshli/code-generator/cmd/model"
 )
 
 //Run ...

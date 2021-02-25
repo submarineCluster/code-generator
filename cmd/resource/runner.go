@@ -8,8 +8,9 @@ import (
 
 	"github.com/markbates/pkger"
 
-	"git.code.oa.com/leoshli/code-generator/cmd/model"
 	"github.com/spf13/cobra"
+
+	"git.code.oa.com/leoshli/code-generator/cmd/model"
 )
 
 //Run ...

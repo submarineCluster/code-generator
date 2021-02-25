@@ -1,10 +1,11 @@
 package model
 
 import (
+	"github.com/pkg/errors"
+
 	"git.code.oa.com/leoshli/code-generator/conf"
 	"git.code.oa.com/leoshli/code-generator/utils/goenv"
 	"git.code.oa.com/leoshli/code-generator/utils/nameutil"
-	"github.com/pkg/errors"
 )
 
 // GenMetadata gen metadata from env and cmd args

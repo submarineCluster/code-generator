@@ -5,7 +5,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-//Create ...
+//List ...
 func (d *Dao) List(opts ...QueryOption) ([]*model.{{.Name.ExportedCamel}}Model, error) {
 
 	var {{.Name.UnexportedCamel}}ModelList []*model.{{.Name.ExportedCamel}}Model

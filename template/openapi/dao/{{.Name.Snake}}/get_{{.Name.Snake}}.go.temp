@@ -5,7 +5,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-//Create ...
+//Get ...
 func (d *Dao) Get(id int64, opts ...QueryOption) (*model.{{.Name.ExportedCamel}}Model, error) {
 
 	{{.Name.UnexportedCamel}}Model := &model.{{.Name.ExportedCamel}}Model{}

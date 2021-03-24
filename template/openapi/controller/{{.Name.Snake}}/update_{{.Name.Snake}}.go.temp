@@ -16,21 +16,21 @@ func Update{{.Name.ExportedCamel}}(ctx *gin.Context) {
 	err := ctx.ShouldBindBodyWith(update{{.Name.ExportedCamel}}Req, binding.JSON)
 	if err != nil {
 		log.InfoContextf(ctx, "ShouldBindBodyWith fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 
 	err = validateUpdate(update{{.Name.ExportedCamel}}Req)
 	if err != nil {
 		log.InfoContextf(ctx, "validateUpdate fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 
 	{{.Name.UnexportedCamel}}, err := server.Update(ctx, update{{.Name.ExportedCamel}}Req.{{.Name.ExportedCamel}})
 	if err != nil {
 		log.InfoContextf(ctx, "service Update fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 	utils.ResponseSuccess(ctx, {{.Name.UnexportedCamel}})

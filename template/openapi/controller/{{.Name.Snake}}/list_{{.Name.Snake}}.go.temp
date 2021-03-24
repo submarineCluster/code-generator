@@ -26,14 +26,14 @@ func List{{.Name.ExportedCamel}}(ctx *gin.Context) {
 	err := validateList(req)
 	if err != nil {
 		log.InfoContextf(ctx, "validateList fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 
 	{{.Name.UnexportedCamel}}List, err := server.List(ctx, req)
 	if err != nil {
 		log.InfoContextf(ctx, "service List fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_DB_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeDBError, err.Error())
 		return
 	}
 

@@ -17,7 +17,7 @@ func Get{{.Name.ExportedCamel}}(ctx *gin.Context) {
 	id, err := strconv.ParseInt(ctx.Query("id"), 10, 64)
 	if err != nil {
 		log.InfoContextf(ctx, "parseInt fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 	req.ID = id
@@ -25,14 +25,14 @@ func Get{{.Name.ExportedCamel}}(ctx *gin.Context) {
 	err = validateGet(req)
 	if err != nil {
 		log.InfoContextf(ctx, "validateGet fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_PARAMS_JSON_PARSE_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeParamsJSONParseError, err.Error())
 		return
 	}
 
 	{{.Name.UnexportedCamel}}, err := server.Get(ctx, req)
 	if err != nil {
 		log.InfoContextf(ctx, "service Get fail:%v", err)
-		utils.ResponseError(ctx, enum.CODE_DB_ERROR, err.Error())
+		utils.ResponseError(ctx, enum.CodeDBError, err.Error())
 		return
 	}
 	utils.ResponseSuccess(ctx, {{.Name.UnexportedCamel}})

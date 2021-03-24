@@ -22,6 +22,7 @@ type List{{.Name.ExportedCamel}}Req struct {
 	Where map[string]interface{} `json:"where"`
 }
 
+//List{{.Name.ExportedCamel}}Resp ...
 type List{{.Name.ExportedCamel}}Resp struct {
 	ListMeta
 	Total   int64  `json:"total"`

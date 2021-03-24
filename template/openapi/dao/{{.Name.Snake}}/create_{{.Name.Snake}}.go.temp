@@ -10,7 +10,7 @@ import (
 //Create ...
 func (d *Dao) Create({{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}Model) (*model.{{.Name.ExportedCamel}}Model, error) {
 
-	*{{.Name.UnexportedCamel}}.CreateTime = time.Now().Format("2006-01-02 15:04:05") // TODO timezone
+	{{.Name.UnexportedCamel}}.CreateTime = time.Now().Format("2006-01-02 15:04:05") // TODO timezone
 	err := d.DB.Create({{.Name.UnexportedCamel}}).Error
 	if err != nil {
 		return nil, errors.Wrapf(err, "create fail")

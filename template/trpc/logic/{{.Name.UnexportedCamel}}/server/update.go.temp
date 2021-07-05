@@ -4,7 +4,7 @@ package server
 import (
 	"context"
 
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/entity/model"
 	"github.com/pkg/errors"
 
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"

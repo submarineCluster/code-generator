@@ -6,7 +6,7 @@ import (
 
 	"git.code.oa.com/tencent_abtest/go-common/eventqueue"
 	eventqueue_model "git.code.oa.com/tencent_abtest/go-common/eventqueue/model"
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/entity/model"
 	"{{.ModuleName}}/{{.Name.UnexportedCamel}}/traffic"
 
 	"github.com/pkg/errors"

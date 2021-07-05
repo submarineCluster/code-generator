@@ -69,7 +69,7 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	resourceCmd.Flags().StringVarP(&conf.ResourceName, "name", "n", "", "name of resource")
-	resourceCmd.Flags().StringVarP(&conf.TemplateDir, "templateDir", "t", "", "path of template-code")
+	resourceCmd.Flags().StringVarP(&conf.TemplateDir, "templateDir", "t", "", "path of template-code，推荐使用ddd，备选trpc, 例如 code-generator resource -n demo -t ddd")
 	resourceCmd.Flags().BoolVarP(&conf.Verbose, "verbose", "v", false, "verbose")
 	resourceCmd.Flags().BoolVar(&conf.DaoMetrics, "daoMetrics", true, "report metrics for dao op")
 	resourceCmd.Flags().BoolVar(&conf.APIServer, "apiServer", false, "generator api service")

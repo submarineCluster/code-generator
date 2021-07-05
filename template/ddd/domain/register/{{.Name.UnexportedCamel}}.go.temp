@@ -2,8 +2,8 @@
 package register
 
 import (
-	"{{.ModulePath}}/domain/api"
-	"{{.ModulePath}}/inst"
+	"{{.ModuleName}}/domain/api"
+	"{{.ModuleName}}/inst"
 )
 
 //{{.Name.ExportedCamel}}Service ...

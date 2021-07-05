@@ -3,7 +3,11 @@ module git.code.oa.com/leoshli/code-generator
 go 1.15
 
 require (
-	git.code.oa.com/tencent_abtest/go-common/code-components v0.0.0-20210702044319-7c470fc4f881 // indirect
+	git.code.oa.com/rainbow/golang-sdk v0.3.4
+	git.code.oa.com/tencent_abtest/go-common/code-components v0.0.0-20210702044319-7c470fc4f881
+	git.code.oa.com/tencent_abtest/go-common/ctxlog v0.1.8
+	git.code.oa.com/tencent_abtest/go-common/eventqueue v0.0.0-20210702063435-778465fc0243
+	git.code.oa.com/trpc-go/trpc-go v0.6.6
 	github.com/coreos/bbolt v1.3.2 // indirect
 	github.com/coreos/etcd v3.3.13+incompatible // indirect
 	github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e // indirect
@@ -14,7 +18,6 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.0.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0 // indirect
-	github.com/jonboulle/clockwork v0.1.0 // indirect
 	github.com/markbates/pkger v0.17.1
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
@@ -33,5 +36,7 @@ require (
 	golang.org/x/text v0.3.6 // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/resty.v1 v1.12.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0
+	gorm.io/driver/mysql v1.1.1
+	gorm.io/gorm v1.21.11
 )

@@ -3,7 +3,7 @@ package inst
 import (
 	"fmt"
 
-	"{{.ModuleName}}/conf"
+	"{{.ModuleName}}/repo/conf"
 	"github.com/pkg/errors"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

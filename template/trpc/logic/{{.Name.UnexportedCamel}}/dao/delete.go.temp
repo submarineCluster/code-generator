@@ -4,7 +4,7 @@ package dao
 import (
 	"context"
 
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/entity/model"
 
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"

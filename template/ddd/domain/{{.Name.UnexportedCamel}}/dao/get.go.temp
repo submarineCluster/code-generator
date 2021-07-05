@@ -3,10 +3,12 @@ package dao
 
 import (
 	"context"
-
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+	"git.code.oa.com/trpc-go/trpc-go/metrics"
 	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/conf"
+    "git.code.oa.com/trpc-go/trpc-go/log"
 )
 
 //Get ...
@@ -15,6 +17,16 @@ func (s *Store) Get(ctx context.Context, id meta.ID, option *option.GetOption) (
 	{{.Name.UnexportedCamel}} := &model.{{.Name.ExportedCamel}}{}
 
 	// Get cache
+	{{if .Ctrl.CacheEnable}}
+    if content, cacheErr := inst.RedisClient.Get(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, id)).Result(); cacheErr == nil {
+        metrics.IncrCounter(conf.GenMetricsKey(model.ObjectKind{{.Name.ExportedCamel}}, conf.MetricsSceneHit), 1)
+        err := json.Unmarshal([]byte(content), {{.Name.UnexportedCamel}})
+        if err == nil {
+            return {{.Name.UnexportedCamel}}, nil
+        }
+    }
+    metrics.IncrCounter(conf.GenMetricsKey(model.ObjectKind{{.Name.ExportedCamel}}, conf.MetricsSceneMiss), 1)
+    {{end}}
 
 	err := s.Dao.First({{.Name.UnexportedCamel}}, id).Error
 	if err != nil {

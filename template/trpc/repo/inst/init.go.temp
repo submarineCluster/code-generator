@@ -8,5 +8,10 @@ func Init() error {
 	if err != nil {
 		return errors.Wrapf(err, "initDB")
 	}
+
+	err = initRedis()
+	if err != nil {
+		return errors.Wrapf(err, "initRedis")
+	}
 	return nil
 }

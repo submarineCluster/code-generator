@@ -1,0 +1,30 @@
+package inst
+
+import (
+	"context"
+	"net"
+	"time"
+
+	"{{.ModuleName}}/repo/conf"
+	"github.com/go-redis/redis/v8"
+	"github.com/pkg/errors"
+)
+
+func initRedis() error {
+	redisConfig := conf.Config().RedisConfig
+	client := redis.NewClient(&redis.Options{
+		Addr:         net.JoinHostPort(redisConfig.Host, redisConfig.Port),
+		Password:     redisConfig.Password,
+		DB:           redisConfig.Database,
+		DialTimeout:  5 * time.Second,
+		PoolSize:     redisConfig.PoolSize,
+		MinIdleConns: redisConfig.MinIdleConns,
+		MaxConnAge:   25 * time.Minute,
+	})
+	_, err := client.Ping(context.Background()).Result()
+	if err != nil {
+		return errors.Wrapf(err, "redis ping fail")
+	}
+	RedisClient = client
+	return nil
+}

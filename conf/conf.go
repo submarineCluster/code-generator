@@ -15,6 +15,7 @@ var (
 	ProtoOnly    bool
 	AppName      string
 	ServerName   string
+	CacheEnable  bool
 )
 
 //StorageType ...

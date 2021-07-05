@@ -5,7 +5,8 @@ import (
 	"context"
 
 	"{{.ModuleName}}/entity/model"
-
+	"{{.ModuleName}}/repo/conf"
+    "git.code.oa.com/trpc-go/trpc-go/log"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
 )
@@ -18,5 +19,12 @@ func (s *Store) Delete(ctx context.Context, id meta.ID, deleteOption *option.Del
 			ID: id,
 		},
 	}
+
+	{{if .Ctrl.CacheEnable}}
+    cacheErr := inst.RedisClient.Del(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, id)).Err()
+    if cacheErr != nil { // just print
+        log.Errorf("[key=%v]redis Del fail:%v", conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), cacheErr)
+    }
+    {{end}}
 	return s.Dao.Delete({{.Name.UnexportedCamel}}).Error
 }

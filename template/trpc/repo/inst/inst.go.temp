@@ -1,10 +1,13 @@
 package inst
 
 import (
+	"github.com/go-redis/redis/v8"
 	"gorm.io/gorm"
 )
 
 var (
 	// DBClient ...
 	DBClient *gorm.DB
+	// RedisClient ...
+	RedisClient *redis.Client
 )

@@ -5,6 +5,9 @@ import (
 	"context"
 
 	"{{.ModuleName}}/entity/model"
+	"{{.ModuleName}}/repo/inst"
+	"{{.ModuleName}}/repo/conf"
+	"git.code.oa.com/trpc-go/trpc-go/log"
 )
 
 //Create ...
@@ -13,5 +16,11 @@ func (s *Store) Create(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.
 	if err != nil {
 		return nil, err
 	}
+	{{if .Ctrl.CacheEnable}}
+	cacheErr := inst.RedisClient.Set(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), {{.Name.UnexportedCamel}}, conf.Expiration).Err()
+    if cacheErr != nil { // just print
+        log.Errorf("[key=%v]redis set fail:%v", conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), cacheErr)
+    }
+	{{end}}
 	return {{.Name.UnexportedCamel}}, err
 }

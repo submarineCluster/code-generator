@@ -31,6 +31,7 @@ type Controller struct {
 	ProtoOnly      bool             `json:"protoOnly"`
 	AppName        string           `json:"appName"`
 	ServerName     string           `json:"serverName"`
+	CacheEnable    bool             `json:"cacheEnable"`
 }
 
 //Common ...

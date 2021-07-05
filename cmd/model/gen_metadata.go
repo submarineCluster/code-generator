@@ -46,6 +46,7 @@ func GenMetadata() (*Metadata, error) {
 		ProtoOnly:      conf.ProtoOnly,
 		AppName:        conf.AppName,
 		ServerName:     conf.ServerName,
+		CacheEnable:    conf.CacheEnable,
 	}
 
 	result.Common = Common{

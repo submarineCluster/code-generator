@@ -68,15 +68,17 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	resourceCmd.Flags().StringVarP(&conf.ResourceName, "name", "n", "", "name of resource")
+	resourceCmd.Flags().StringVarP(&conf.ResourceName, "name", "n", "", "资源对象名称，必填，如demo")
 	resourceCmd.Flags().StringVarP(&conf.TemplateDir, "templateDir", "t", "", "path of template-code，推荐使用ddd，备选trpc, 例如 code-generator resource -n demo -t ddd")
 	resourceCmd.Flags().BoolVarP(&conf.Verbose, "verbose", "v", false, "verbose")
-	resourceCmd.Flags().BoolVar(&conf.DaoMetrics, "daoMetrics", true, "report metrics for dao op")
-	resourceCmd.Flags().BoolVar(&conf.APIServer, "apiServer", false, "generator api service")
+	resourceCmd.Flags().BoolVar(&conf.DaoMetrics, "daoMetrics", true, "指标上报代码生成，TODO")
+	resourceCmd.Flags().BoolVar(&conf.APIServer, "apiServer", false, "API server代码生成，TODO 暂不需要")
+	resourceCmd.Flags().BoolVarP(&conf.CacheEnable, "cacheEnable", "c", false, "开启对象数据redis缓存，一般不需要，除非像用户等经常需要Get获取的")
 	resourceCmd.Flags().StringVarP(&conf.StorageT, "storageType", "s", string(conf.StorageTypeMongo),
-		"storage-type, eg: mysql/mongo, mongo default")
-	resourceCmd.Flags().BoolVarP(&conf.ProtoOnly, "protoOnly", "p", false, "gen proto file only")
+		"storage-type, eg: mysql/mongo, mongo default， TODO")
+	resourceCmd.Flags().BoolVarP(&conf.ProtoOnly, "protoOnly", "p", false, "单纯生成proto文件")
 	resourceCmd.Flags().StringVarP(&conf.AppName, "app", "a", "TAB", "appName default TAB, 生成协议文件时需要传入")
-	resourceCmd.Flags().StringVar(&conf.ServerName, "server", "", "serverName, 生成协议文件时需要传入，请使用小蛇式如 mab_scheduler")
+	resourceCmd.Flags().StringVar(&conf.ServerName, "server", "", "serverName, 一般用123上的服务名，请使用小蛇式如 mab_scheduler")
 	resourceCmd.MarkFlagRequired("name")
+	resourceCmd.MarkFlagRequired("server")
 }

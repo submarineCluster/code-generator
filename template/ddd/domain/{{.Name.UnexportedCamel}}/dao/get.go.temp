@@ -1,0 +1,26 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+	"{{.ModulePath}}/domain/model"
+)
+
+//Get ...
+func (s *Store) Get(ctx context.Context, id meta.ID, option *option.GetOption) (*model.{{.Name.ExportedCamel}}, error) {
+
+	{{.Name.UnexportedCamel}} := &model.{{.Name.ExportedCamel}}{}
+
+	// Get cache
+
+	err := s.Dao.First({{.Name.UnexportedCamel}}, id).Error
+	if err != nil {
+		return nil, err
+	}
+
+	// set cache
+	return {{.Name.UnexportedCamel}}, nil
+}

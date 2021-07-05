@@ -1,0 +1,15 @@
+/*Package controller generator by code-generator JUST EDIT
+*/
+package controller
+
+import (
+	"context"
+	"{{.ModuleName}}/domain/{{.Name.Snake}}/dao"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+    "git.code.oa.com/leoshli/code-component/model/option"
+)
+
+//List ...
+func (c *Controller) List(ctx context.Context, o *option.ListOption, opts ...dao.ListOption) (*model.{{.Name.ExportedCamelList}}, error) {
+	return c.Dao.List(ctx, o, opts...)
+}

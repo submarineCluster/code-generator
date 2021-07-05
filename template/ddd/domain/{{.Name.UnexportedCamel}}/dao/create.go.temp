@@ -1,0 +1,17 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+
+	"{{.ModulePath}}/domain/model"
+)
+
+//Create ...
+func (s *Store) Create(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+	err := s.Dao.Model({{.Name.UnexportedCamel}}).Create({{.Name.UnexportedCamel}}).Error
+	if err != nil {
+		return nil, err
+	}
+	return {{.Name.UnexportedCamel}}, err
+}

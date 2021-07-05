@@ -1,0 +1,66 @@
+/*Package dao generator by code-generator JUST EDIT
+*/
+package dao
+
+import (
+	"github.com/ilibs/gosql/v2"
+	"fmt"
+)
+
+// Dao ...
+type Dao struct {
+}
+
+//NewDao ...
+func NewDao() *Dao {
+	return &Dao{}
+}
+
+const (
+	maxLimitNum    = 200
+	normalLimitNum = 10
+)
+
+
+//ListOption ...
+type ListOption func(modelStruct *gosql.ModelStruct) *gosql.ModelStruct
+
+//AnyFieldListOption ...
+func AnyFieldListOption(key string, value interface{}) ListOption {
+	return func(modelStruct *gosql.ModelStruct) *gosql.ModelStruct {
+		if len(key) == 0 {
+			return modelStruct
+		}
+		return modelStruct.Where(fmt.Sprintf("%v = ?", key), value)
+	}
+}
+
+//OrderByListOption ...
+func OrderByListOption(orderBy string) ListOption {
+	return func(modelStruct *gosql.ModelStruct) *gosql.ModelStruct {
+		if len(orderBy) == 0 {
+			return modelStruct
+		}
+		return modelStruct.OrderBy(orderBy)
+	}
+}
+
+//LimitListOption ...
+func LimitListOption(limit int) ListOption {
+	return func(modelStruct *gosql.ModelStruct) *gosql.ModelStruct {
+		if limit > maxLimitNum {
+			limit = maxLimitNum
+		}
+		if limit == 0 {
+			limit = normalLimitNum
+		}
+		return modelStruct.Limit(limit)
+	}
+}
+
+//OffsetListOption ...
+func OffsetListOption(offset int) ListOption {
+	return func(modelStruct *gosql.ModelStruct) *gosql.ModelStruct {
+		return modelStruct.Offset(offset)
+	}
+}

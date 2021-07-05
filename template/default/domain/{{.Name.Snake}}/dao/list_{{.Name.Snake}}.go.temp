@@ -1,0 +1,62 @@
+/*Package dao generator by code-generator JUST EDIT
+*/
+package dao
+
+import (
+	"git.yy.com/ihago/ylog"
+	"git.yy.com/ihago/ylog/zap"
+	"git.yy.com/ihago/ymetrics"
+	"github.com/ilibs/gosql/v2"
+	"github.com/pkg/errors"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"time"
+)
+
+// List ...
+func (d *Dao) List(ctx context.Context, o *option.ListOption, opts ...ListOption) (*model.{{.Name.ExportedCamelList}}, error) {
+
+	var err error
+	{{if .Ctrl.DaoMetricsFlag}}
+	defer func(startTime int64) {
+		code := 0 // success
+		if err != nil {
+			code = 1 // failure
+		}
+		metricsError := ymetrics.SendMetrics("Dao/List{{.Name.ExportedCamel}}", code, startTime, func(code int) bool {
+			return code == 0
+		})
+		if metricsError != nil {
+			ylog.Error("SendMetrics fail", zap.Error(metricsError))
+		}
+	}(time.Now().UnixNano())
+	{{- end}}
+
+	var items []*model.{{.Name.ExportedCamel}}
+
+    modelStruct := gosql.Model(&items)
+
+    if o.FlagBit & option.DeleteFlagBit == 0 {
+        modelStruct = modelStruct.Where("delete_timestamp = ?", 0)
+    }
+
+    for _, opt := range opts {
+        modelStruct = opt(modelStruct)
+    }
+
+    err = modelStruct.All()
+    if err != nil {
+        return nil, errors.Wrapf(err, "All Model fail")
+    }
+
+    total, err := modelStruct.Count()
+    if err != nil {
+        return nil, errors.Wrapf(err, "Count Model fail")
+    }
+
+    result := &model.{{.Name.ExportedCamelList}}{}
+
+    result.Items = items
+    result.Total = total
+
+    return result, nil
+}

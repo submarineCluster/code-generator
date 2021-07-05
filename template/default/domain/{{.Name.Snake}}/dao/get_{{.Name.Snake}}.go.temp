@@ -1,0 +1,53 @@
+/*Package dao generator by code-generator JUST EDIT
+*/
+package dao
+
+import (
+	"git.yy.com/ihago/ylog"
+	"git.yy.com/ihago/ylog/zap"
+	"git.yy.com/ihago/ymetrics"
+	"github.com/ilibs/gosql/v2"
+	"github.com/pkg/errors"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"time"
+	"context"
+    "git.code.oa.com/leoshli/code-component/model/meta"
+    "git.code.oa.com/leoshli/code-component/model/option"
+)
+
+// Get ...
+func (d *Dao) Get(ctx context.Context, id meta.ID, o *option.GetOption) (*model.{{.Name.ExportedCamel}}, error) {
+
+	var err error
+	{{if .Ctrl.DaoMetricsFlag}}
+	defer func(startTime int64) {
+		code := 0 // success
+		if err != nil {
+			code = 1 // failure
+		}
+		metricsError := ymetrics.SendMetrics("Dao/Get{{.Name.ExportedCamel}}", code, startTime, func(code int) bool {
+			return code == 0
+		})
+		if metricsError != nil {
+			ylog.Error("SendMetrics fail", zap.Error(metricsError))
+		}
+	}(time.Now().UnixNano())
+	{{- end}}
+
+    var result = &model.{{.Name.ExportedCamel}}{
+        ObjectMeta: meta.ObjectMeta{
+            ID:              id,
+        },
+    }
+	modelStruct := gosql.Model(result).Where("ID = ?", id)
+    if o.FlagBit & option.DeleteFlagBit == 0 { // 不包含被删除数据
+        modelStruct = modelStruct.Where("delete_timestamp = ?", 0)
+    }
+
+    err = modelStruct.Get()
+    if err != nil {
+        return nil, errors.Wrapf(err, "get Model fail")
+    }
+
+	return result, nil
+}

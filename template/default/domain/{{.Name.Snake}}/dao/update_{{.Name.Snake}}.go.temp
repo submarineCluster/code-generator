@@ -1,0 +1,43 @@
+/*Package dao generator by code-generator JUST EDIT
+*/
+package dao
+
+import (
+	"git.yy.com/ihago/ylog"
+	"git.yy.com/ihago/ylog/zap"
+	"git.yy.com/ihago/ymetrics"
+	"github.com/ilibs/gosql/v2"
+	"github.com/pkg/errors"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"git.code.oa.com/leoshli/code-component/model/meta"
+	"time"
+)
+
+// Update ...
+func (d *Dao) Update(ctx context.Context, id meta.ID, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+
+	var err error
+	{{if .Ctrl.DaoMetricsFlag}}
+	defer func(startTime int64) {
+		code := 0 // success
+		if err != nil {
+			code = 1 // failure
+		}
+		metricsError := ymetrics.SendMetrics("Dao/Update{{.Name.ExportedCamel}}", code, startTime, func(code int) bool {
+			return code == 0
+		})
+		if metricsError != nil {
+			ylog.Error("SendMetrics fail", zap.Error(metricsError))
+		}
+	}(time.Now().UnixNano())
+	{{- end}}
+
+	modelStruct := gosql.Model({{.Name.UnexportedCamel}}).Where("id = ?", id)
+
+    _, err = modelStruct.Update()
+    if err != nil {
+        return nil, errors.Wrapf(err, "update Model fail")
+    }
+
+    return {{.Name.UnexportedCamel}}, nil
+}

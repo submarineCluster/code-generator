@@ -1,0 +1,22 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+
+	"{{.ModulePath}}/domain/model"
+
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+)
+
+//Delete ...
+func (s *Store) Delete(ctx context.Context, id meta.ID, deleteOption *option.DeleteOption) error {
+
+	{{.Name.UnexportedCamel}} := &model.{{.Name.ExportedCamel}}{
+		ObjectMeta: meta.ObjectMeta{
+			ID: id,
+		},
+	}
+	return s.Dao.Delete({{.Name.UnexportedCamel}}).Error
+}

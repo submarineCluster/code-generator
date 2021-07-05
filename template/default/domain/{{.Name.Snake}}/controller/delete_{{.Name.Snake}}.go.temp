@@ -1,0 +1,14 @@
+/*Package controller generator by code-generator JUST EDIT
+*/
+package controller
+
+import (
+	"context"
+	"git.code.oa.com/leoshli/code-component/model/meta"
+	"git.code.oa.com/leoshli/code-component/model/option"
+)
+
+//Delete ...
+func (c *Controller) Delete(ctx context.Context, id meta.ID, o *option.DeleteOption) error {
+	return c.Dao.Delete(ctx, id, o)
+}

@@ -1,0 +1,28 @@
+/*Package controller generator by code-generator JUST EDIT
+*/
+package controller
+
+import (
+	"context"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"github.com/pkg/errors"
+)
+
+//Create ...
+func (c *Controller) Create(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+
+	err := verifyCreate({{.Name.UnexportedCamel}})
+    if err != nil {
+        return nil, errors.Wrapf(err, "verify fail")
+    }
+
+	return c.Dao.Create(ctx, {{.Name.UnexportedCamel}})
+}
+
+// verifyCreate
+func verifyCreate({{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) error {
+    if {{.Name.UnexportedCamel}} == nil {
+        return errors.Errorf("required {{.Name.UnexportedCamel}}")
+    }
+    return nil
+}

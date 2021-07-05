@@ -1,0 +1,15 @@
+/*Package controller generator by code-generator JUST EDIT
+*/
+package controller
+
+import (
+	"context"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"git.code.oa.com/leoshli/code-component/model/meta"
+    "git.code.oa.com/leoshli/code-component/model/option"
+)
+
+//Get ...
+func (c *Controller) Get(ctx context.Context, id meta.ID, o *option.GetOption) (*model.{{.Name.ExportedCamel}}, error) {
+	return c.Dao.Get(ctx, id, o)
+}

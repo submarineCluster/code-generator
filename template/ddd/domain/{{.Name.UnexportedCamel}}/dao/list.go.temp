@@ -1,0 +1,24 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+	"{{.ModulePath}}/domain/model"
+)
+
+//List ...
+func (s *Store) List(ctx context.Context, listOption *option.ListOption) (*model.{{.Name.ExportedCamel}}List, error) {
+
+	var err error
+	result := &model.{{.Name.ExportedCamel}}List{}
+	dbModel := s.Dao.Model(&model.{{.Name.ExportedCamel}}{})
+	dbModel, err = option.SettingDBModel(dbModel, listOption)
+
+	err = dbModel.Find(&result.Data).Error
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}

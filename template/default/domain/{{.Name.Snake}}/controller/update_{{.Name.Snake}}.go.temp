@@ -1,0 +1,29 @@
+/*Package controller generator by code-generator JUST EDIT
+*/
+package controller
+
+import (
+	"context"
+	"{{.ModuleName}}/domain/api/{{.Name.Snake}}/model"
+	"git.code.oa.com/leoshli/code-component/model/meta"
+	"github.com/pkg/errors"
+)
+
+// Update ...
+func (c *Controller) Update(ctx context.Context, id meta.ID, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+
+	err := verifyUpdate({{.Name.UnexportedCamel}})
+    if err != nil {
+        return nil, errors.Wrapf(err, "verify fail")
+    }
+
+	return c.Dao.Update(ctx, id, {{.Name.UnexportedCamel}})
+}
+
+// verifyUpdate
+func verifyUpdate({{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) error {
+    if {{.Name.UnexportedCamel}} == nil || {{.Name.UnexportedCamel}}.ID == 0 {
+        return errors.Errorf("invalid ID=%v", {{.Name.UnexportedCamel}}.ID)
+    }
+    return nil
+}

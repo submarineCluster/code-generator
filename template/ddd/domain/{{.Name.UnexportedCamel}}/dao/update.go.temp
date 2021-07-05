@@ -1,0 +1,17 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+
+	"{{.ModulePath}}/domain/model"
+)
+
+//Update 更新非零值数据
+func (s *Store) Update(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+	err := s.Dao.Model({{.Name.UnexportedCamel}}).Updates({{.Name.UnexportedCamel}}).Error
+	if err != nil {
+		return nil, err
+	}
+	return {{.Name.UnexportedCamel}}, err
+}

@@ -25,7 +25,7 @@ const (
 type {{.Name.ExportedCamel}}Spec struct {}
 
 //TableName ...
-func (t *{{.Name.ExportedCamel}}) TableName() string {
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) TableName() string {
 	return "t_{{.Name.UnexportedCamel}}"
 }
 

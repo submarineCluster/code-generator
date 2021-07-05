@@ -12,13 +12,6 @@ func GenMetadata() (*Metadata, error) {
 
 	result := NewMetadata()
 
-	// get module-name
-	moduleName, err := goenv.GetModuleName()
-	if err != nil {
-		return nil, errors.Wrapf(err, "GetModuleName fail")
-	}
-	result.ModuleName = moduleName
-
 	// gen model
 	modelData := Name{
 		Name:              conf.ResourceName,
@@ -29,14 +22,6 @@ func GenMetadata() (*Metadata, error) {
 		ExportedCamelList: nameutil.ToExportedCamel(conf.ResourceName) + "List",
 	}
 	result.Name = modelData
-
-	// gen gen dir
-	modulePath, err := goenv.GetModulePath()
-	if err != nil {
-		return nil, errors.Wrapf(err, "GetModulePath fail")
-	}
-	result.ModulePath = modulePath
-	result.GenDir = genDir(result)
 
 	result.Ctrl = Controller{
 		DaoMetricsFlag: conf.DaoMetrics,
@@ -54,6 +39,22 @@ func GenMetadata() (*Metadata, error) {
 		ServerMark: ServerMark,
 	}
 
+	modulePath, err := goenv.GetModulePath()
+	if err != nil {
+		return nil, errors.Wrapf(err, "GetModulePath fail")
+	}
+	result.ModulePath = modulePath
+	result.GenDir = genDir(result)
+
+	if !conf.ProtoOnly { // 可以在项目外生成proto文件
+		// gen gen dir
+		// get module-name
+		moduleName, err := goenv.GetModuleName()
+		if err != nil {
+			return nil, errors.Wrapf(err, "GetModuleName fail")
+		}
+		result.ModuleName = moduleName
+	}
 	err = validateResult(result)
 	if err != nil {
 		return nil, errors.Wrapf(err, "validate metadata")

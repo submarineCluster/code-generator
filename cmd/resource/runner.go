@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"git.code.oa.com/tencent_abtest/code-generator/conf"
 	"git.code.oa.com/tencent_abtest/code-generator/utils/gotools"
 
 	"github.com/markbates/pkger"
@@ -24,6 +25,9 @@ func Run(cmd *cobra.Command, args []string) {
 		fmt.Printf("GenMetadata fail: %v", err)
 		return
 	}
+	if conf.Verbose {
+		fmt.Printf("%+v\n", metadata)
+	}
 
 	// gen code file by metadata
 	err = GenFileByMetadata(metadata)
@@ -33,13 +37,15 @@ func Run(cmd *cobra.Command, args []string) {
 	}
 
 	// do fmt
-	err = gotools.GoFmt(metadata.GenDir)
-	if err != nil {
-		fmt.Printf("gofmt fail:%v", err)
-	}
-	err = gotools.GoImport(metadata.GenDir)
-	if err != nil {
-		fmt.Printf("gofmt fail:%v", err)
+	if !conf.ProtoOnly {
+		err = gotools.GoFmt(metadata.GenDir)
+		if err != nil {
+			fmt.Printf("gofmt fail:%v", err)
+		}
+		err = gotools.GoImport(metadata.GenDir)
+		if err != nil {
+			fmt.Printf("gofmt fail:%v", err)
+		}
 	}
 
 	// verify

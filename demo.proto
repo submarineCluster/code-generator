@@ -1,0 +1,134 @@
+syntax = "proto3";
+package trpc.TAB.mab_server;
+
+//default go package name 
+option  go_package ="git.code.oa.com/trpcprotocol/tab/mab_server";
+
+// 不建议使用 google/protobuf/any.proto 
+// any强依赖package type.googleapis.com/_packagename_._messagename_.   
+// https://developers.google.com/protocol-buffers/docs/proto3#any 
+
+// tRPC-Go数据校验模块（**移除注释使用**） 
+// 介绍：http://km.oa.com/articles/view/438840 
+// import "trpc/common/validate.proto";
+
+message CreateDemoRequest {
+  string businessCode = 1;
+  Demo demo = 2;
+}
+
+message Demo {
+  Metadata meta = 1;
+  DemoSpec demoSpec = 2;
+}
+
+message Metadata {
+  string name = 1; // 英文名
+  string title = 2;
+  int64 id = 3;
+  int64 createTimestamp = 4;
+  int64 modifyTimestamp = 5;
+  string creator = 6;
+  string modifier = 7;
+  map<string, string> label = 8;
+  map<string, value> namespace = 9;
+}
+
+message value {
+  repeated string isolation = 1;
+}
+
+enum Status {
+  UNKNOWN_STATUS = 0;
+  RUNNING_STATUS = 1; // 运作状态
+  STOPPING_STATUS = 2; // 暂停状态
+  FINISH_STATUS = 3; // 下线状态
+}
+
+enum DemoType {
+  UNKNOWN_TASK_TYPE = 0;
+  TIMER = 1; // 定时任务
+  ONCE = 2; // 一次行任务
+}
+
+// Demo 对象非标准属性
+message DemoSpec {
+
+}
+
+// TODO common proto define
+enum Code {
+  SUCCESS = 0; // 成功 唯一一个零值有意义的枚举
+  INVALID_PARAM = 10001;
+  SERVER_BROKEN = 20000;
+  DB_BROKEN = 20001;
+}
+
+// TODO common proto define
+message CommonResult {
+  Code code = 1;
+  string message = 2;
+}
+
+message CreateDemoResponse {
+  CommonResult result = 1;;
+  Demo demo = 10;
+}
+
+message UpdateDemoRequest {
+  string businessCode = 1;
+  Demo demo = 2;
+}
+
+message UpdateDemoResponse {
+  CommonResult result = 1;
+  Demo demo = 10;
+}
+
+message GetDemoRequest {
+  int64 id = 1;
+}
+
+message GetDemoResponse {
+  CommonResult result = 1;
+  Demo demo = 10;
+}
+
+message ListDemoRequest {
+  string businessCode = 1;
+  map<string, string> where= 2;
+  Page page = 3;
+}
+
+message Page {
+  int64 limit = 1;
+  int64 offset = 2;
+}
+
+message ListDemoResponse {
+  CommonResult result = 1;
+  Page page = 10;
+  DemoList demoList = 11;
+}
+
+message DemoList {
+  int64 total = 1;
+  repeated Demo demoList = 10;
+}
+
+message DelDemoRequest {
+  int64 id = 1;
+}
+
+message DelDemoResponse {
+  CommonResult result = 1;
+  Demo demo = 10;
+}
+
+service DemoService {
+  rpc Create (CreateDemoRequest) returns (CreateDemoResponse);
+  rpc Update (UpdateDemoRequest) returns (UpdateDemoResponse);
+  rpc Get (GetDemoRequest) returns (GetDemoResponse);
+  rpc List (ListDemoRequest) returns (ListDemoResponse);
+  rpc Del (DelDemoRequest) returns (DelDemoResponse);
+}

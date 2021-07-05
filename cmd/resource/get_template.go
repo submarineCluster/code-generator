@@ -38,11 +38,6 @@ func GetTemplate(metadata *model.Metadata) (string, error) {
 	//default:
 	//	tempPath = tempDirPath + defaultTemp
 	//}
-
-	if metadata.Ctrl.ProtoOnly {
-		tempPath = tempPath + ProtoPath
-	}
-
 	_, err := pkger.Stat(tempPath)
 	if os.IsNotExist(err) {
 		return "", errors.Wrapf(err, "os stat fail")
@@ -76,6 +71,9 @@ func GetConfTemplatePath(metadata *model.Metadata) (string, error) {
 
 func getTemplateDir(metadata *model.Metadata) string {
 
+	if metadata.Ctrl.ProtoOnly {
+		return fmt.Sprintf("git.code.oa.com/tencent_abtest/code-generator:/template" + ProtoPath)
+	}
 	if len(metadata.Ctrl.TemplateDir) > 0 {
 		return fmt.Sprintf("git.code.oa.com/tencent_abtest/code-generator:/template/") + metadata.Ctrl.TemplateDir
 	}

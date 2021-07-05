@@ -1,9 +1,5 @@
 package conf
 
-import (
-	"git.code.oa.com/tencent_abtest/code-generator/utils/goenv"
-)
-
 // var ...
 var (
 	ResourceName string
@@ -32,18 +28,7 @@ type Inst struct {
 	GoPkg string `json:"goPkg"`
 }
 
-// var ...
-var (
-	I *Inst
-)
-
 // const ...
 const (
 	SufferString = ".temp"
 )
-
-func init() {
-	I = &Inst{
-		GoPkg: goenv.GetGoPkg(),
-	}
-}

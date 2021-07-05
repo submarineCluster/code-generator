@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"git.code.oa.com/tencent_abtest/code-generator/conf"
+
 	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
 
 	"github.com/pkg/errors"
@@ -42,6 +44,14 @@ func GetModulePath() (string, error) {
 	result := strings.Trim(string(body), "\n")
 
 	if strings.EqualFold(result, "/dev/null") || len(result) == 0 {
+		if conf.ProtoOnly {
+			moduleCMD = exec.Command("pwd")
+			body, err = moduleCMD.CombinedOutput()
+			if err != nil {
+				return "", err
+			}
+			return strings.Trim(string(body), "\n"), nil
+		}
 		return "", errors.Errorf("Must be under the go mod project")
 	}
 

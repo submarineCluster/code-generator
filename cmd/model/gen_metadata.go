@@ -1,9 +1,9 @@
 package model
 
 import (
-	"git.code.oa.com/leoshli/code-generator/conf"
-	"git.code.oa.com/leoshli/code-generator/utils/goenv"
-	"git.code.oa.com/leoshli/code-generator/utils/nameutil"
+	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/goenv"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/nameutil"
 	"github.com/pkg/errors"
 )
 

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.code.oa.com/leoshli/code-generator/utils/callstack"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
 
 	"github.com/pkg/errors"
 )

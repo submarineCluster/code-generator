@@ -1,6 +1,6 @@
 package model
 
-import "git.code.oa.com/leoshli/code-generator/conf"
+import "git.code.oa.com/tencent_abtest/code-generator/conf"
 
 //Metadata ...
 type Metadata struct {

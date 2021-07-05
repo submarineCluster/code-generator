@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"git.code.oa.com/leoshli/code-generator/utils/goenv"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/goenv"
 )
 
 // var ...

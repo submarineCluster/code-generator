@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"git.code.oa.com/leoshli/code-generator/conf"
+	"git.code.oa.com/tencent_abtest/code-generator/conf"
 )
 
 //GoFmt ...

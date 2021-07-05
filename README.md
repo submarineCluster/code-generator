@@ -56,7 +56,7 @@
 
 ## Start
 
-> go get -u git.code.oa.com/leoshli/code-generator
+> go get -u git.code.oa.com/tencent_abtest/code-generator
 
 ### Example
 

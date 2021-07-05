@@ -7,8 +7,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"git.code.oa.com/leoshli/code-generator/cmd/model"
-	"git.code.oa.com/leoshli/code-generator/utils/log"
+	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/log"
 )
 
 func clean(metadata *model.Metadata) error {

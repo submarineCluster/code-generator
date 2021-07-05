@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	"git.code.oa.com/leoshli/code-generator/utils/gotools"
+	"git.code.oa.com/tencent_abtest/code-generator/utils/gotools"
 
 	"github.com/markbates/pkger"
 
 	"github.com/spf13/cobra"
 
-	"git.code.oa.com/leoshli/code-generator/cmd/model"
+	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
 )
 
 //Run ...

@@ -1,0 +1,10 @@
+package inst
+
+import (
+	"gorm.io/gorm"
+)
+
+var (
+	// DBClient ...
+	DBClient *gorm.DB
+)

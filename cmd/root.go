@@ -24,9 +24,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"os/exec"
-
-	"git.code.oa.com/leoshli/code-generator/utils/log"
 
 	"git.code.oa.com/leoshli/code-generator/utils/version"
 
@@ -53,13 +50,13 @@ to quickly create a Cobra application.`,
 	//	Run: func(cmd *cobra.Command, args []string) { },
 	Version: version.GetVersion(),
 	PreRun: func(cmd *cobra.Command, args []string) {
-		upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/leoshli/code-generator")
-		log.Printf("%v", upgradeCmd.String())
-		body, err := upgradeCmd.CombinedOutput()
-		if err != nil {
-			log.Printf("%v, err=%v", upgradeCmd.String(), err)
-		}
-		log.Printf("%v", string(body))
+		//upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/leoshli/code-generator")
+		//log.Printf("%v", upgradeCmd.String())
+		//body, err := upgradeCmd.CombinedOutput()
+		//if err != nil {
+		//	log.Printf("%v, err=%v", upgradeCmd.String(), err)
+		//}
+		//log.Printf("%v", string(body))
 	},
 }
 

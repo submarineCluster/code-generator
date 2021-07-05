@@ -28,6 +28,9 @@ type Controller struct {
 	APIServer      bool             `json:"apiServer"`
 	Storage        conf.StorageType `json:"storage"`
 	TemplateDir    string           `json:"templateDir"`
+	ProtoOnly      bool             `json:"protoOnly"`
+	AppName        string           `json:"appName"`
+	ServerName     string           `json:"serverName"`
 }
 
 //Common ...

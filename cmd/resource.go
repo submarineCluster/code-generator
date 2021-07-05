@@ -75,5 +75,8 @@ func init() {
 	resourceCmd.Flags().BoolVar(&conf.APIServer, "apiServer", false, "generator api service")
 	resourceCmd.Flags().StringVarP(&conf.StorageT, "storageType", "s", string(conf.StorageTypeMongo),
 		"storage-type, eg: mysql/mongo, mongo default")
+	resourceCmd.Flags().BoolVarP(&conf.ProtoOnly, "protoOnly", "p", false, "gen proto file only")
+	resourceCmd.Flags().StringVarP(&conf.AppName, "app", "a", "TAB", "appName default TAB, 生成协议文件时需要传入")
+	resourceCmd.Flags().StringVar(&conf.ServerName, "server", "", "serverName, 生成协议文件时需要传入，请使用小蛇式如 mab_scheduler")
 	resourceCmd.MarkFlagRequired("name")
 }

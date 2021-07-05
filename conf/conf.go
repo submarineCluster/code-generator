@@ -12,6 +12,9 @@ var (
 	APIServer    bool
 	StorageT     string
 	TemplateDir  string
+	ProtoOnly    bool
+	AppName      string
+	ServerName   string
 )
 
 //StorageType ...

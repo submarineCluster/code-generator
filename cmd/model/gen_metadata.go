@@ -1,11 +1,10 @@
 package model
 
 import (
-	"github.com/pkg/errors"
-
 	"git.code.oa.com/leoshli/code-generator/conf"
 	"git.code.oa.com/leoshli/code-generator/utils/goenv"
 	"git.code.oa.com/leoshli/code-generator/utils/nameutil"
+	"github.com/pkg/errors"
 )
 
 // GenMetadata gen metadata from env and cmd args
@@ -44,6 +43,9 @@ func GenMetadata() (*Metadata, error) {
 		APIServer:      conf.APIServer,
 		Storage:        conf.StorageType(conf.StorageT),
 		TemplateDir:    conf.TemplateDir,
+		ProtoOnly:      conf.ProtoOnly,
+		AppName:        conf.AppName,
+		ServerName:     conf.ServerName,
 	}
 
 	result.Common = Common{
@@ -51,9 +53,49 @@ func GenMetadata() (*Metadata, error) {
 		ServerMark: ServerMark,
 	}
 
+	err = validateResult(result)
+	if err != nil {
+		return nil, errors.Wrapf(err, "validate metadata")
+	}
+
 	return result, nil
 }
 
 func genDir(metadata *Metadata) string {
 	return metadata.ModulePath
+}
+
+func validateResult(metadata *Metadata) error {
+
+	if metadata.Ctrl.ProtoOnly {
+		if len(metadata.Ctrl.ServerName) == 0 {
+			return errors.Errorf("required serverName")
+		}
+	}
+	if metadata.Ctrl.TemplateDir == "ddd" || metadata.Ctrl.TemplateDir == "trpc" {
+		if len(metadata.Ctrl.ServerName) == 0 {
+			return errors.Errorf("required serverName")
+		}
+	}
+
+	if len(metadata.Ctrl.ServerName) > 0 {
+		for i, s := range metadata.Ctrl.ServerName {
+			if i == 0 {
+				if s < 'a' || s > 'z' {
+					return errors.Errorf("invalid serverName, required snakeCase")
+				}
+			}
+
+			if i == len(metadata.Ctrl.ServerName)-1 {
+				if s == '_' {
+					return errors.Errorf("invalid serverName, required snakeCase")
+				}
+			}
+			if 'a' <= s && s <= 'z' || '0' < s && s <= '9' || s == '_' {
+				continue
+			}
+			return errors.Errorf("invalid serverName, required snakeCase")
+		}
+	}
+	return nil
 }

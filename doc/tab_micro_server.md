@@ -2,6 +2,13 @@
 
 代码生成工具篇
 
+```shell
+git clone git.code.oa.com:tencent_abtest/code-generator.git
+cd code-generator && make
+```
+
+将生成的可执行文件 code-generator 放到path路径下
+
 可以查看 工具helper
 
 ```shell

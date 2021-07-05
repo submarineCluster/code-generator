@@ -2,6 +2,8 @@
 
 [tab微服务框架使用文档](./doc/tab_micro_server.md)
 
+[为什么这么设计](./doc/design.md)
+
 ## Overview
 
 > code-generator 以资源为粒度，生成该资源的 API 代码，如常见的 CRUD

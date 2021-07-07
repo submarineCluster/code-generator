@@ -22,16 +22,10 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
-	"os/exec"
-
-	"git.code.oa.com/tencent_abtest/code-generator/ldflags"
-
 	"github.com/spf13/cobra"
 
 	"git.code.oa.com/tencent_abtest/code-generator/cmd/resource"
 	"git.code.oa.com/tencent_abtest/code-generator/conf"
-	"git.code.oa.com/tencent_abtest/code-generator/utils/log"
 )
 
 // resourceCmd represents the resource command
@@ -45,15 +39,15 @@ code-generator resource will generator crud code for resource`,
 	Example: "code-generator resource -n codeGenerator",
 	PreRun: func(cmd *cobra.Command, args []string) {
 
-		fmt.Printf("%v\n%v\n%v\n", ldflags.Version, ldflags.GOVersion, ldflags.BuildTime)
-
-		upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/tencent_abtest/code-generator")
-		log.Printf("%v", upgradeCmd.String())
-		body, err := upgradeCmd.CombinedOutput()
-		if err != nil {
-			log.Printf("%v, err=%v", upgradeCmd.String(), err)
-		}
-		log.Printf("%v", string(body))
+		//fmt.Printf("%v\n%v\n%v\n", ldflags.Version, ldflags.GOVersion, ldflags.BuildTime)
+		//
+		//upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/tencent_abtest/code-generator")
+		//log.Printf("%v", upgradeCmd.String())
+		//body, err := upgradeCmd.CombinedOutput()
+		//if err != nil {
+		//	log.Printf("%v, err=%v", upgradeCmd.String(), err)
+		//}
+		//log.Printf("%v", string(body))
 	},
 }
 

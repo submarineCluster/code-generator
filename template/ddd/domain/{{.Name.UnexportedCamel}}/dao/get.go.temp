@@ -34,5 +34,11 @@ func (s *Store) Get(ctx context.Context, id meta.ID, option *option.GetOption) (
 	}
 
 	// set cache
+	{{if .Ctrl.CacheEnable}}
+    cacheErr := inst.RedisClient.Set(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), {{.Name.UnexportedCamel}}, conf.Expiration).Err()
+    if cacheErr != nil { // just print
+        log.Errorf("[key=%v]redis set fail:%v", conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), cacheErr)
+    }
+    {{end}}
 	return {{.Name.UnexportedCamel}}, nil
 }

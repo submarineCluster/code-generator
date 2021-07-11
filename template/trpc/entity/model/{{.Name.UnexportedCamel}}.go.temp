@@ -3,6 +3,7 @@ package model
 
 import (
 	"time"
+	"encoding/json"
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 	"github.com/pkg/errors"
@@ -105,4 +106,9 @@ func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) Transform{{.Name.ExportedCam
 		},
 		{{.Name.ExportedCamel}}Spec: &pb.{{.Name.ExportedCamel}}Spec{},
 	}
+}
+
+//MarshalBinary ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) MarshalBinary() (data []byte, err error) {
+	return json.Marshal({{.Name.ShortName}})
 }

@@ -1,5 +1,3 @@
-[toc]
-
 # tab-micro-server
 
 代码生成工具篇

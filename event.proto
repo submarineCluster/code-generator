@@ -1,0 +1,87 @@
+syntax = "proto3";
+package trpc.TAB.mab_scheduler;
+
+//default go package name 
+option  go_package ="git.code.oa.com/trpcprotocol/tab/mab_scheduler";
+
+// 不建议使用 google/protobuf/any.proto 
+// any强依赖package type.googleapis.com/_packagename_._messagename_.   
+// https://developers.google.com/protocol-buffers/docs/proto3#any 
+
+// tRPC-Go数据校验模块（**移除注释使用**） 
+// 介绍：http://km.oa.com/articles/view/438840 
+// import "trpc/common/validate.proto";
+import "tab/common/common.proto";
+
+message CreateEventRequest {
+  string businessCode = 1;
+  Event event = 2;
+}
+
+message Event {
+  tab.common.Metadata meta = 1;
+  EventSpec eventSpec = 2;
+}
+
+// Event 对象非标准属性
+message EventSpec {
+
+}
+
+message CreateEventResponse {
+  tab.common.CommonResult result = 1;;
+  Event event = 10;
+}
+
+message UpdateEventRequest {
+  string businessCode = 1;
+  Event event = 2;
+}
+
+message UpdateEventResponse {
+  tab.common.CommonResult result = 1;
+  Event event = 10;
+}
+
+message GetEventRequest {
+  int64 id = 1;
+}
+
+message GetEventResponse {
+  tab.common.CommonResult result = 1;
+  Event event = 10;
+}
+
+message ListEventRequest {
+  string businessCode = 1;
+  map<string, string> where= 2;
+  tab.common.Page page = 3;
+}
+
+message ListEventResponse {
+  tab.common.CommonResult result = 1;
+  tab.common.Page page = 10;
+  EventList eventList = 11;
+}
+
+message EventList {
+  int64 total = 1;
+  repeated Event eventList = 10;
+}
+
+message DelEventRequest {
+  int64 id = 1;
+}
+
+message DelEventResponse {
+  tab.common.CommonResult result = 1;
+  Event event = 10;
+}
+
+service EventService {
+  rpc Create (CreateEventRequest) returns (CreateEventResponse);
+  rpc Update (UpdateEventRequest) returns (UpdateEventResponse);
+  rpc Get (GetEventRequest) returns (GetEventResponse);
+  rpc List (ListEventRequest) returns (ListEventResponse);
+  rpc Del (DelEventRequest) returns (DelEventResponse);
+}

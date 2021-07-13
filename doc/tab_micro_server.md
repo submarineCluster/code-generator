@@ -1,13 +1,8 @@
+[toc]
+
 # tab-micro-server
 
 代码生成工具篇
-
-```shell
-git clone git.code.oa.com:tencent_abtest/code-generator.git
-cd code-generator && make
-```
-
-将生成的可执行文件 code-generator 放到path路径下
 
 可以查看 工具helper
 
@@ -238,5 +233,95 @@ code-generator resource -n permission -t ddd --server auth_center
 
 ```shell
 code-generator resource -n token -t ddd --server auth_center
+```
+
+## Q&A
+
+### 修改pb文件怎么更新
+
+一般习惯在pb桩代码中编写makefile
+
+```makefile
+all: .generate
+
+.PHONY: all
+
+.generate:
+	trpc create --protodir=${GOPATH}/src --protofile=mab-scheduler.proto --rpconly
+	trpc create --protodir=${GOPATH}/src/git.code.oa.com/trpcprotocol --protofile=event.proto --rpconly
+	gofmt -w .
+	goimports -w .
+```
+
+具体可以查看trpc 工具的使用方式
+
+### import common proto file 找不到
+
+```
+trpc create --protodir=${GOPATH}/src/git.code.oa.com/trpcprotocol --protofile=mab-scheduler.proto --rpconly
+```
+
+在makefile中，指定protodir的地址，以 ${GOPATH}/src下为例
+
+```shell
+~/Code/gopath/src/git.code.oa.com/trpcprotocol/tab/common
+```
+
+在${GOPATH}/src 下
+
+```shell
+mkdir -p git.code.oa.com/trpcprotocol
+cd git.code.oa.com/trpcprotocol
+```
+
+然后
+
+```
+git clone https://git.code.oa.com/trpcprotocol/tab.git
+```
+
+最终样子
+
+~/Code/gopath/src/git.code.oa.com/trpcprotocol/tab/common
+
+后续就可以用--protodir=${GOPATH}/src/git.code.oa.com/trpcprotocol 方式指定依赖的pb文件位置
+
+### 原有项目增加新的对象怎么增加
+
+进入项目协议文件目录，假如放在stub目录下
+
+```shell
+ shaohui@LEOSHLI-MB1  ~/Code/tencent/tencent-abtest/mab-scheduler/stub/git.code.oa.com/trpcprotocol/tab/mab_scheduler
+.
+├── event.pb.go
+├── event.proto
+├── event.trpc.go
+├── event_mock.go
+├── go.mod
+├── go.sum
+├── mab-scheduler.pb.go
+├── mab-scheduler.proto
+├── mab-scheduler.trpc.go
+├── mab_scheduler_mock.go
+└── makefile
+
+```
+
+使用工具生成新对象的pb文件，以role对象为例
+
+```shell
+code-generator resource -n role -t ddd -p --server auth_center
+```
+
+然后修改makefile，增加role对象的相关命令
+
+```shell
+trpc create --protodir=${GOPATH}/src/git.code.oa.com/trpcprotocol --protofile=role.proto --rpconly
+```
+
+然后回到项目主路径，执行以下命令即可
+
+```shell
+code-generator resource -n role -t ddd --server auth_center
 ```
 

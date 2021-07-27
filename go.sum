@@ -79,6 +79,9 @@ git.code.oa.com/trpc-go/trpc-naming-polaris v0.2.2/go.mod h1:0s3dgIzTiGURWt+YQja
 git.code.oa.com/trpc-go/trpc-selector-cl5 v0.1.0 h1:C1NWjJT5hI03zk3ahgx2Gzw2hVtg+QaRJQb8nMWw3iM=
 git.code.oa.com/trpc-go/trpc-selector-cl5 v0.1.0/go.mod h1:CKvimVtWwqxPblliXKwH3syHJmo0MpEkensbNYG0jDE=
 git.code.oa.com/trpcprotocol/tab v0.0.0-20210702091202-70f1c9df8019 h1:47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+git.code.oa.com/trpcprotocol/tab v0.0.0-20210724061457-fc908d4c6a39 h1:47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+git.code.oa.com/trpcprotocol/tab/common v1.1.4 h1:sg0MO6yqjABTuOVIsvZ4a9ZBk7fpa6m72CwM/qaxW38=
+git.code.oa.com/trpcprotocol/tab/common v1.1.4/go.mod h1:D7nNaEox1X0FI3AGPnG0V2kk7GxeLbaNxQZ9TmxSCQo=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=

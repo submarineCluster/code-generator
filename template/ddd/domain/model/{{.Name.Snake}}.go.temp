@@ -1,0 +1,109 @@
+// Package model generate by code-generator
+package model
+
+import (
+	"time"
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"github.com/pkg/errors"
+	"git.code.oa.com/trpcprotocol/tab/common"
+	"gorm.io/gorm"
+)
+
+//{{.Name.ExportedCamel}} ...
+type {{.Name.ExportedCamel}} struct {
+	meta.ObjectMeta
+	Spec *{{.Name.ExportedCamel}}Spec       `gorm:"embedded"`
+	Kind meta.ObjectKind `gorm:"-"`
+}
+
+const (
+	// ObjectKind{{.Name.ExportedCamel}} ...
+	ObjectKind{{.Name.ExportedCamel}} meta.ObjectKind = "{{.Name.UnexportedCamel}}"
+)
+
+//{{.Name.ExportedCamel}}Spec ...
+type {{.Name.ExportedCamel}}Spec struct {}
+
+//TableName ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) TableName() string {
+	return "t_{{.Name.UnexportedCamel}}"
+}
+
+//{{.Name.ExportedCamel}}List ...
+type {{.Name.ExportedCamel}}List struct {
+	meta.ListMeta
+	Data []*{{.Name.ExportedCamel}}
+}
+
+//BeforeUpdate ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) BeforeUpdate(tx *gorm.DB) (err error) {
+	// if Name changed
+	if tx.Statement.Changed("name") {
+		return errors.New("name not allowed to change")
+	}
+
+	// if any fields changed
+	if tx.Statement.Changed() {
+		tx.Statement.SetColumn("modify_timestamp", time.Now())
+	}
+	return nil
+}
+
+//BeforeSave ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) BeforeSave(tx *gorm.DB) (err error) {
+	// if Name changed
+	if tx.Statement.Changed("name") {
+		return errors.New("name not allowed to change")
+	}
+
+	// if any fields changed
+	if tx.Statement.Changed() {
+		tx.Statement.SetColumn("modify_timestamp", time.Now())
+	}
+	return nil
+}
+
+//BeforeCreate ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) BeforeCreate(tx *gorm.DB) (err error) {
+	tx.Statement.SetColumn("create_timestamp", time.Now())
+	tx.Statement.SetColumn("modify_timestamp", time.Now())
+	return nil
+}
+
+//Transform{{.Name.ExportedCamel}} ...
+func Transform{{.Name.ExportedCamel}}({{.Name.UnexportedCamel}} *pb.{{.Name.ExportedCamel}}) *{{.Name.ExportedCamel}} {
+	return &{{.Name.ExportedCamel}}{
+		ObjectMeta: meta.ObjectMeta{
+			ID:              meta.ID({{.Name.UnexportedCamel}}.Meta.Id),
+			Name:            meta.Name({{.Name.UnexportedCamel}}.Meta.Name),
+			Title:           {{.Name.UnexportedCamel}}.Meta.Title,
+			CreateTimestamp: {{.Name.UnexportedCamel}}.Meta.CreateTimestamp,
+			Creator:         {{.Name.UnexportedCamel}}.Meta.Creator,
+			ModifyTimestamp: {{.Name.UnexportedCamel}}.Meta.ModifyTimestamp,
+			Modifier:        {{.Name.UnexportedCamel}}.Meta.Modifier,
+			DeleteTimestamp: 0,
+			Labels:      nil,
+			Annotations: nil,
+		},
+		Spec: &{{.Name.ExportedCamel}}Spec{},
+		Kind: ObjectKind{{.Name.ExportedCamel}},
+	}
+}
+
+//Transform{{.Name.ExportedCamel}} ...
+func ({{.Name.ShortName}} *{{.Name.ExportedCamel}}) Transform{{.Name.ExportedCamel}}() *pb.{{.Name.ExportedCamel}} {
+	return &pb.{{.Name.ExportedCamel}}{
+		Meta: &common.Metadata{
+			Name:            {{.Name.ShortName}}.Name.String(),
+			Title:           {{.Name.ShortName}}.Title,
+			Id:              {{.Name.ShortName}}.ID.Int64(),
+			CreateTimestamp: {{.Name.ShortName}}.CreateTimestamp,
+			ModifyTimestamp: {{.Name.ShortName}}.ModifyTimestamp,
+			Creator:         {{.Name.ShortName}}.Creator,
+			Modifier:        {{.Name.ShortName}}.Modifier,
+			Label:           {{.Name.ShortName}}.Labels,
+		},
+		{{.Name.ExportedCamel}}Spec: &pb.{{.Name.ExportedCamel}}Spec{},
+	}
+}

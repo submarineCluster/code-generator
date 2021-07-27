@@ -1,0 +1,16 @@
+// Package controller generate by code-generator
+package controller
+
+import (
+	"context"
+
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+)
+
+//Del ...
+func (c *{{.Name.ExportedCamel}}Controller) Del(ctx context.Context, req *pb.Del{{.Name.ExportedCamel}}Request, rsp *pb.Del{{.Name.ExportedCamel}}Response) error {
+	// implement business logic here ...
+	// ...
+
+	return nil
+}

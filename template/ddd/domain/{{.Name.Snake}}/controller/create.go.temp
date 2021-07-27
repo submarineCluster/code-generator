@@ -1,0 +1,43 @@
+// Package controller generate by code-generator
+package controller
+
+import (
+	"context"
+
+	"git.code.oa.com/tencent_abtest/go-common/ctxlog"
+	"git.code.oa.com/trpc-go/trpc-go/errs"
+	"git.code.oa.com/trpcprotocol/tab/common"
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+)
+
+//Create ...
+func (c *{{.Name.ExportedCamel}}Controller) Create(ctx context.Context, req *pb.Create{{.Name.ExportedCamel}}Request, rsp *pb.Create{{.Name.ExportedCamel}}Response) error {
+	// implement business logic here ...
+	// ...
+	err := validateCreate(req)
+	if err != nil {
+		ctxlog.Errorf(ctx, "validateCreate fail:$v", err)
+	}
+
+	// auth
+	_, err = ValidateAuth(ctx, APIKeyCreate)
+
+	// call server Create
+	{{.Name.UnexportedCamel}}, err := c.Server.Create(ctx, req.{{.Name.ExportedCamel}})
+	if err != nil {
+		rsp.Result = &common.CommonResult{
+			Code:    common.Code_INTERNAL_SERVER_ERROR,
+			Message: err.Error(),
+		}
+		return nil
+	}
+	rsp.{{.Name.ExportedCamel}} = {{.Name.UnexportedCamel}}
+	return nil
+}
+
+func validateCreate(req *pb.Create{{.Name.ExportedCamel}}Request) error {
+	if req == nil || req.{{.Name.ExportedCamel}} == nil || req.{{.Name.ExportedCamel}}.Meta == nil || req.{{.Name.ExportedCamel}}.{{.Name.ExportedCamel}}Spec == nil {
+		return errs.New(int(common.Code_INVALID_PARAM), "required {{.Name.UnexportedCamel}}")
+	}
+	return nil
+}

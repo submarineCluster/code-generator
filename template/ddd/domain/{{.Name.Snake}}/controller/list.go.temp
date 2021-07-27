@@ -1,0 +1,25 @@
+// Package controller generate by code-generator
+package controller
+
+import (
+	"context"
+
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+)
+
+//List ...
+func (c *{{.Name.ExportedCamel}}Controller) List(ctx context.Context, req *pb.List{{.Name.ExportedCamel}}Request, rsp *pb.List{{.Name.ExportedCamel}}Response) error {
+	// implement business logic here ...
+	// ...
+
+	{{.Name.UnexportedCamel}}List, err := c.Server.List(ctx)
+	if err != nil {
+		rsp.Result = &common.CommonResult{
+            Code:    common.Code_INTERNAL_SERVER_ERROR,
+            Message: err.Error(),
+        }
+		return nil
+	}
+	rsp.{{.Name.ExportedCamel}}List = {{.Name.UnexportedCamel}}List
+	return nil
+}

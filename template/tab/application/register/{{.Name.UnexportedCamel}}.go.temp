@@ -1,0 +1,12 @@
+// Package register generate by code-generator
+package register
+
+import (
+	"{{.ModuleName}}/domain/api"
+	"{{.ModuleName}}/inst"
+)
+
+//{{.Name.ExportedCamel}}Service ...
+func {{.Name.ExportedCamel}}Service(service api.{{.Name.ExportedCamel}}Service) {
+	inst.M.{{.Name.ExportedCamel}}Service = service
+}

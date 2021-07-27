@@ -1,0 +1,39 @@
+package conf
+
+import (
+	"time"
+
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+)
+
+const (
+	//CachePrefix ...
+	CachePrefix = "cache:system"
+
+	// Expiration 缓存时长
+	Expiration = 24 * time.Hour
+)
+
+//GetCacheKey ...
+func GetCacheKey(kind meta.ObjectKind, id meta.ID) string {
+	return CachePrefix + ":" + kind.String() + ":" + id.String()
+}
+
+//MetricsScene ...
+type MetricsScene string
+
+// const ...
+const (
+	MetricsSceneHit  MetricsScene = "hit"
+	MetricsSceneMiss MetricsScene = "miss"
+)
+
+// String ...
+func (m MetricsScene) String() string {
+	return string(m)
+}
+
+//GenMetricsKey ...
+func GenMetricsKey(kind meta.ObjectKind, scene MetricsScene) string {
+	return CachePrefix + ":" + kind.String() + ":" + scene.String()
+}

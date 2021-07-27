@@ -1,0 +1,25 @@
+// Package dao generate by code-generator
+package dao
+
+import (
+	"context"
+	"{{.ModuleName}}/conf"
+    "git.code.oa.com/trpc-go/trpc-go/log"
+	"{{.ModuleName}}/domain/model"
+)
+
+//Save ...
+func (s *Store) Save(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+
+    {{if .Ctrl.CacheEnable}}
+    cacheErr := inst.RedisClient.Del(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID)).Err()
+    if cacheErr != nil { // just print
+        log.Errorf("[key=%v]redis Del fail:%v", conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), cacheErr)
+    }
+    {{end}}
+	err := s.Dao.Model({{.Name.UnexportedCamel}}).Save({{.Name.UnexportedCamel}}).Error
+	if err != nil {
+		return nil, err
+	}
+	return {{.Name.UnexportedCamel}}, err
+}

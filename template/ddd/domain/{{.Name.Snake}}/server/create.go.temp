@@ -28,7 +28,7 @@ func (s *{{.Name.ExportedCamel}}Server) Create(ctx context.Context, {{.Name.Unex
 	if err != nil {
 		return nil, errors.Wrapf(err, "Create")
 	}
-	return {{.Name.UnexportedCamel}}, nil
+	return {{.Name.UnexportedCamel}}Model.Transform{{.Name.ExportedCamel}}(), nil
 }
 
 func validateCreate({{.Name.UnexportedCamel}} *pb.{{.Name.ExportedCamel}}) error {

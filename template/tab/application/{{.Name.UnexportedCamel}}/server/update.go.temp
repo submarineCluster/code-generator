@@ -1,0 +1,20 @@
+// Package server generate by code-generator
+package server
+
+import (
+	"context"
+
+	"{{.ModuleName}}/domain/model"
+	"github.com/pkg/errors"
+
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+)
+
+//Update ...
+func (s *{{.Name.ExportedCamel}}Server) Update(ctx context.Context, t *pb.{{.Name.ExportedCamel}}) (*pb.{{.Name.ExportedCamel}}, error) {
+	{{.Name.UnexportedCamel}}, err := s.S.Update(ctx, model.Transform{{.Name.ExportedCamel}}(t))
+	if err != nil {
+		return nil, errors.Wrapf(err, "Update")
+	}
+	return {{.Name.UnexportedCamel}}.Transform{{.Name.ExportedCamel}}(), nil
+}

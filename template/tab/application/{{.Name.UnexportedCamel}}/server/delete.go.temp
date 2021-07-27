@@ -1,0 +1,19 @@
+// Package server generate by code-generator
+package server
+
+import (
+	"context"
+
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+)
+
+//Delete ...
+func (s *{{.Name.ExportedCamel}}Server) Delete(ctx context.Context, id meta.ID, opts ...option.DeleteOpt) error {
+
+	options := option.NewDeleteOption()
+	for _, opt := range opts {
+		options = opt(options)
+	}
+	return s.S.Delete(ctx, id, options)
+}

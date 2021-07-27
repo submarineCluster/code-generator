@@ -1,0 +1,29 @@
+package controller
+
+import (
+	"context"
+)
+
+//APIKey ...
+type APIKey string
+
+// const ...
+const (
+	APIKeyCreate APIKey = "create"
+	APIKeyUpdate APIKey = "update"
+)
+
+//Postcard 通行证
+type Postcard struct {
+	UID  string `json:"uid"`
+	Role string `json:"role"`
+	// ... 基础属性
+}
+
+//ValidateAuth ...
+func ValidateAuth(ctx context.Context, apiKey APIKey) (*Postcard, error) {
+
+	// TODO call auth-sdk
+
+	return &Postcard{}, nil
+}

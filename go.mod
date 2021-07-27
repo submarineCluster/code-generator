@@ -8,6 +8,7 @@ require (
 	git.code.oa.com/tencent_abtest/go-common/ctxlog v0.1.8 // indirect
 	git.code.oa.com/tencent_abtest/go-common/eventqueue v0.0.0-20210702063435-778465fc0243 // indirect
 	git.code.oa.com/trpc-go/trpc-go v0.6.6 // indirect
+	git.code.oa.com/trpcprotocol/tab/common v1.1.4 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-redis/redis/v8 v8.10.0 // indirect
 	github.com/gobuffalo/here v0.6.2 // indirect

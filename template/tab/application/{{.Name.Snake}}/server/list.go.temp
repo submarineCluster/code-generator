@@ -3,9 +3,7 @@ package server
 
 import (
 	"context"
-
 	"github.com/pkg/errors"
-
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
 )

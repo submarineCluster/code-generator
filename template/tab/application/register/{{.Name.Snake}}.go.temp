@@ -2,11 +2,11 @@
 package register
 
 import (
-	"{{.ModuleName}}/domain/api"
-	"{{.ModuleName}}/inst"
+	"{{.ModuleName}}/api"
+	"{{.ModuleName}}/infra"
 )
 
 //{{.Name.ExportedCamel}}Service ...
 func {{.Name.ExportedCamel}}Service(service api.{{.Name.ExportedCamel}}Service) {
-	inst.M.{{.Name.ExportedCamel}}Service = service
+	infra.M.{{.Name.ExportedCamel}}Service = service
 }

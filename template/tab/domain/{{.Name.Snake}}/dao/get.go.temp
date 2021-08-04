@@ -6,7 +6,7 @@ import (
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
 	"git.code.oa.com/trpc-go/trpc-go/metrics"
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/application/model"
 	"{{.ModuleName}}/conf"
     "git.code.oa.com/trpc-go/trpc-go/log"
 )

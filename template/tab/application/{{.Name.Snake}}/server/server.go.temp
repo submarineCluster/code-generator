@@ -2,8 +2,8 @@
 package server
 
 import (
-	"{{.ModuleName}}/domain/register"
-	"{{.ModuleName}}/domain/{{.Name.UnexportedCamel}}/dao"
+	"{{.ModuleName}}/application/register"
+	"{{.ModuleName}}/domain/{{.Name.Snake}}/dao"
 )
 
 //{{.Name.ExportedCamel}}Server ...

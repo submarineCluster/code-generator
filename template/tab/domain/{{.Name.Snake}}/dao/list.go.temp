@@ -5,7 +5,7 @@ import (
 	"context"
 
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/application/model"
 )
 
 //List ...

@@ -1,0 +1,16 @@
+package infra
+
+import (
+	"{{.ModuleName}}/api"
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+)
+
+//ServiceManager ...
+type ServiceManager struct {
+	{{.Name.ExportedCamel}}Service api.{{.Name.ExportedCamel}}Service
+}
+
+var (
+	// M serviceManager
+	M = &ServiceManager{}
+)

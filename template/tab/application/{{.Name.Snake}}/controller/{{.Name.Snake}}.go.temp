@@ -2,9 +2,9 @@
 package controller
 
 import (
-	"{{.ModuleName}}/domain/api"
-	"{{.ModuleName}}/domain/{{.Name.UnexportedCamel}}/dao"
-	"{{.ModuleName}}/domain/{{.Name.UnexportedCamel}}/server"
+	"{{.ModuleName}}/api"
+	"{{.ModuleName}}/domain/{{.Name.Snake}}/dao"
+	"{{.ModuleName}}/application/{{.Name.Snake}}/server"
 )
 
 //{{.Name.ExportedCamel}}Controller ...

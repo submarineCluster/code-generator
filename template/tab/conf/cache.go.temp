@@ -2,7 +2,6 @@ package conf
 
 import (
 	"time"
-
 	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
 )
 

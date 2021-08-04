@@ -4,10 +4,8 @@ import (
 	"io/ioutil"
 	"os"
 	"sync"
-
 	"git.code.oa.com/trpc-go/trpc-go"
 	"github.com/pkg/errors"
-
 	"git.code.oa.com/rainbow/golang-sdk/confapi"
 	"git.code.oa.com/rainbow/golang-sdk/config"
 	"git.code.oa.com/rainbow/golang-sdk/types"

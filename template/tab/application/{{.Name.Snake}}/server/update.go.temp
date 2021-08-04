@@ -3,10 +3,8 @@ package server
 
 import (
 	"context"
-
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/application/model"
 	"github.com/pkg/errors"
-
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
 )
 

@@ -5,11 +5,11 @@ import (
 	"context"
 	"{{.ModuleName}}/conf"
     "git.code.oa.com/trpc-go/trpc-go/log"
-	"{{.ModuleName}}/domain/model"
+	"{{.ModuleName}}/application/model"
 )
 
-//Save ...
-func (s *Store) Save(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
+//Update 更新非零值数据
+func (s *Store) Update(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Name.ExportedCamel}}) (*model.{{.Name.ExportedCamel}}, error) {
 
     {{if .Ctrl.CacheEnable}}
     cacheErr := inst.RedisClient.Del(ctx, conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID)).Err()
@@ -17,7 +17,7 @@ func (s *Store) Save(ctx context.Context, {{.Name.UnexportedCamel}} *model.{{.Na
         log.Errorf("[key=%v]redis Del fail:%v", conf.GetCacheKey(model.ObjectKind{{.Name.ExportedCamel}}, {{.Name.UnexportedCamel}}.ID), cacheErr)
     }
     {{end}}
-	err := s.Dao.Model({{.Name.UnexportedCamel}}).Save({{.Name.UnexportedCamel}}).Error
+	err := s.Dao.Model({{.Name.UnexportedCamel}}).Updates({{.Name.UnexportedCamel}}).Error
 	if err != nil {
 		return nil, err
 	}

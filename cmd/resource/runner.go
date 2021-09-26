@@ -57,10 +57,12 @@ func Run(cmd *cobra.Command, args []string) {
 	// done
 }
 
+// verify 。。。
 func verify(metadata *model.Metadata) error {
 	return nil
 }
 
+//verifyIsExist ...
 func verifyIsExist(metadata *model.Metadata) bool {
 	_, err := os.Stat(metadata.GenDir)
 	return os.IsExist(err)

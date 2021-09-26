@@ -11,6 +11,7 @@ import (
 	"git.code.oa.com/tencent_abtest/code-generator/utils/log"
 )
 
+//clean ...
 func clean(metadata *model.Metadata) error {
 
 	for _, path := range genResourceDir(metadata) {
@@ -24,7 +25,9 @@ func clean(metadata *model.Metadata) error {
 	return nil
 }
 
+//removeAll ...
 func removeAll(name string) error {
+	// remove file -rf
 	err := os.RemoveAll(name)
 	if err != nil && !os.IsNotExist(err) {
 		log.Printf("os RemoveAll %v fail: %v", name, err)
@@ -44,6 +47,7 @@ func removeAll(name string) error {
 	return nil
 }
 
+//genResourceDir ...
 func genResourceDir(metadata *model.Metadata) []string {
 	return []string{
 		metadata.GenDir + "/" + metadata.Name.Snake,

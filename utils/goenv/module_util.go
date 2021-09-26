@@ -18,8 +18,11 @@ get go mod name
 
 //GetModuleName ...
 func GetModuleName() (string, error) {
+
+	// get module name
 	moduleCMD := exec.Command("go", "list", "-m")
 
+	// do command
 	body, err := moduleCMD.CombinedOutput()
 	if err != nil {
 		return "", err
@@ -43,6 +46,7 @@ func GetModulePath() (string, error) {
 
 	result := strings.Trim(string(body), "\n")
 
+	// not go mod project
 	if strings.EqualFold(result, "/dev/null") || len(result) == 0 {
 		if conf.ProtoOnly {
 			moduleCMD = exec.Command("pwd")

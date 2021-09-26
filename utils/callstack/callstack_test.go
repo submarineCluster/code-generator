@@ -8,7 +8,9 @@ import (
 	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
 )
 
+// AA ...
 func AA() {
+	// CallFrame ...
 	frame, err := callstack.CallFrame(0)
 	if err != nil {
 		return
@@ -19,6 +21,7 @@ func AA() {
 	frame.File()
 }
 
+// TestCallFrame ...
 func TestCallFrame(t *testing.T) {
 	AA()
 }

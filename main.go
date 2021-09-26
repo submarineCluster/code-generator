@@ -1,4 +1,4 @@
-/*
+/*Package main ...
 Copyright © 2020 submarineCluster <1145480206@qqcom>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,5 +24,5 @@ package main
 import "git.code.oa.com/tencent_abtest/code-generator/cmd"
 
 func main() {
-	cmd.Execute()
+	cmd.Execute() // 执行命令
 }

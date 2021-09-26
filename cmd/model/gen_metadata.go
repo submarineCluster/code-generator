@@ -23,6 +23,7 @@ func GenMetadata() (*Metadata, error) {
 	}
 	result.Name = modelData
 
+	// controller
 	result.Ctrl = Controller{
 		DaoMetricsFlag: conf.DaoMetrics,
 		APIServer:      conf.APIServer,
@@ -34,11 +35,12 @@ func GenMetadata() (*Metadata, error) {
 		CacheEnable:    conf.CacheEnable,
 	}
 
+	// common
 	result.Common = Common{
 		ObjectMark: ObjectMark,
 		ServerMark: ServerMark,
 	}
-
+	// modulePath
 	modulePath, err := goenv.GetModulePath()
 	if err != nil {
 		return nil, errors.Wrapf(err, "GetModulePath fail")
@@ -63,12 +65,15 @@ func GenMetadata() (*Metadata, error) {
 	return result, nil
 }
 
+//genDir ...
 func genDir(metadata *Metadata) string {
 	return metadata.ModulePath
 }
 
+//validateResult ...
 func validateResult(metadata *Metadata) error {
 
+	// protoOnly
 	if metadata.Ctrl.ProtoOnly {
 		if len(metadata.Ctrl.ServerName) == 0 {
 			return errors.Errorf("required serverName")
@@ -80,6 +85,7 @@ func validateResult(metadata *Metadata) error {
 		}
 	}
 
+	// serverName
 	if len(metadata.Ctrl.ServerName) > 0 {
 		for i, s := range metadata.Ctrl.ServerName {
 			if i == 0 {

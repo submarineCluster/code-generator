@@ -11,11 +11,13 @@ import (
 //Run ...
 func Run(cmd *cobra.Command, args []string) {
 
+	// genMetadata
 	metadata, err := model.GenMetadata()
 	if err != nil {
 		fmt.Printf("GenMetadata fail\n")
 		return
 	}
+	// clean
 	err = clean(metadata)
 	if err != nil {
 		fmt.Printf("clean fail\n")

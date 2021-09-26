@@ -92,11 +92,13 @@ func generatorFile(metadata *model.Metadata, templatePathFn func(metadata *model
 			return nil
 		}
 
+		// mkdir -p
 		err = os.MkdirAll(filepath.Dir(filePath), 0755)
 		if err != nil {
 			return errors.Wrapf(err, "os MkdirAll fail")
 		}
 
+		// create file
 		targetFile, err := os.Create(filePath)
 		if err != nil {
 			return errors.Wrapf(err, "os Create fail")
@@ -132,6 +134,7 @@ func generatorFile(metadata *model.Metadata, templatePathFn func(metadata *model
 	return nil
 }
 
+//newTemplate ...
 func newTemplate(name string, filenames ...string) (*template.Template, error) {
 	if len(filenames) == 0 {
 		// Not really a problem, but be consistent.

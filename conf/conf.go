@@ -2,16 +2,16 @@ package conf
 
 // var ...
 var (
-	ResourceName string
-	Verbose      bool
-	DaoMetrics   bool
-	APIServer    bool
-	StorageT     string
-	TemplateDir  string
-	ProtoOnly    bool
-	AppName      string
-	ServerName   string
-	CacheEnable  bool
+	ResourceName string // 资源名
+	Verbose      bool // 是否开启日志输出
+	DaoMetrics   bool // 是否上报dao metrics
+	APIServer    bool // 是否生成 server 层代码
+	StorageT     string // 存储层类型
+	TemplateDir  string // 模板文件目录
+	ProtoOnly    bool // 只生成协议
+	AppName      string // app name
+	ServerName   string // sever name
+	CacheEnable  bool // 是否开启缓存
 )
 
 //StorageType ...

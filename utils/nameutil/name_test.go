@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// TestNameTitle ...
 func TestNameTitle(t *testing.T) {
 	name := "resourceName"
 	t.Logf("title: %v", strings.Title(name))

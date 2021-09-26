@@ -51,6 +51,7 @@ code-generator resource will generator crud code for resource`,
 	},
 }
 
+// init ...
 func init() {
 	rootCmd.AddCommand(resourceCmd)
 
@@ -64,20 +65,32 @@ func init() {
 	// is called directly, e.g.:
 	resourceCmd.Flags().StringVarP(&conf.ResourceName, "name", "n", "",
 		"资源对象名称，必填，如demo")
+	// template-code
 	resourceCmd.Flags().StringVarP(&conf.TemplateDir, "templateDir", "t", "",
 		"path of template-code，推荐使用ddd，备选trpc, 例如 code-generator resource -n demo -t ddd")
 	resourceCmd.Flags().BoolVarP(&conf.Verbose, "verbose", "v", false, "verbose")
+	// 指标上报代码生成
 	resourceCmd.Flags().BoolVar(&conf.DaoMetrics, "daoMetrics", true, "指标上报代码生成，TODO")
+	// API server代码生成
 	resourceCmd.Flags().BoolVar(&conf.APIServer, "apiServer", false, "API server代码生成，TODO 暂不需要")
+	// 缓存是否开启
 	resourceCmd.Flags().BoolVarP(&conf.CacheEnable, "cacheEnable", "c", false,
 		"开启对象数据redis缓存，一般不需要，除非像用户等经常需要Get获取的")
+	// 存储类型
 	resourceCmd.Flags().StringVarP(&conf.StorageT, "storageType", "s", string(conf.StorageTypeMongo),
 		"storage-type, eg: mysql/mongo, mongo default， TODO")
+	// proto only
 	resourceCmd.Flags().BoolVarP(&conf.ProtoOnly, "protoOnly", "p", false, "单纯生成proto文件")
+
+	// app name
 	resourceCmd.Flags().StringVarP(&conf.AppName, "app", "a", "TAB",
 		"appName default TAB, 生成协议文件时需要传入")
+
+	// 服务名
 	resourceCmd.Flags().StringVar(&conf.ServerName, "server", "",
 		"serverName, 一般用123上的服务名，请使用小蛇式如 mab_scheduler")
+	// resource name
 	resourceCmd.MarkFlagRequired("name")
+	// server name
 	resourceCmd.MarkFlagRequired("server")
 }

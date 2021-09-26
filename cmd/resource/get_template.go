@@ -12,11 +12,13 @@ import (
 
 // const ...
 const (
+	// InstSuffixPath ...
 	InstSuffixPath = "/inst"
+	// ConfSuffixPath ...
 	ConfSuffixPath = "/config"
-
+	// defaultTemp ...
 	defaultTemp = "/ddd"
-
+	// ProtoPath ...
 	ProtoPath = "/proto" // 协议文件路径
 )
 
@@ -69,6 +71,7 @@ func GetConfTemplatePath(metadata *model.Metadata) (string, error) {
 	return tempPath, nil
 }
 
+// getTemplateDir ...
 func getTemplateDir(metadata *model.Metadata) string {
 
 	if metadata.Ctrl.ProtoOnly {

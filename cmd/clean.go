@@ -41,6 +41,7 @@ to quickly create a Cobra application.`,
 	Run: clean.Run,
 }
 
+// init ...
 func init() {
 	rootCmd.AddCommand(cleanCmd)
 
@@ -54,5 +55,6 @@ func init() {
 	// is called directly, e.g.:
 	// cleanCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	cleanCmd.Flags().StringVarP(&conf.ResourceName, "name", "n", "", "name of resource")
+	// 开启日志输出
 	cleanCmd.Flags().BoolVarP(&conf.Verbose, "verbose", "v", false, "verbose")
 }

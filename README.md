@@ -97,7 +97,7 @@
 
 Copyright © 2020 ihago [git.yy.com]
 
-# alert
+# code-generator
 
 一行简单的描述。(短描述)
 

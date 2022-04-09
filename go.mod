@@ -1,4 +1,4 @@
-module git.code.oa.com/tencent_abtest/code-generator
+module github.com/submarineCluster/code-generator
 
 go 1.15
 

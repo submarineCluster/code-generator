@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"github.com/submarineCluster/code-generator/conf"
 
-	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
+	"github.com/submarineCluster/code-generator/utils/callstack"
 
 	"github.com/pkg/errors"
 )

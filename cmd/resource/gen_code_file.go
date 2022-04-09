@@ -9,12 +9,12 @@ import (
 	"strings"
 	"text/template"
 
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
+	"github.com/submarineCluster/code-generator/cmd/model"
 
 	"github.com/markbates/pkger"
 	"github.com/pkg/errors"
 
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"github.com/submarineCluster/code-generator/conf"
 )
 
 //GenFileByMetadata ...

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
+	"github.com/submarineCluster/code-generator/utils/callstack"
 )
 
 // AA ...

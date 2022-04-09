@@ -7,7 +7,7 @@ import (
 	"github.com/markbates/pkger"
 	"github.com/pkg/errors"
 
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
+	"github.com/submarineCluster/code-generator/cmd/model"
 )
 
 // const ...
@@ -75,12 +75,12 @@ func GetConfTemplatePath(metadata *model.Metadata) (string, error) {
 func getTemplateDir(metadata *model.Metadata) string {
 
 	if metadata.Ctrl.ProtoOnly {
-		return fmt.Sprintf("git.code.oa.com/tencent_abtest/code-generator:/template" + ProtoPath)
+		return fmt.Sprintf("github.com/submarineCluster/code-generator:/template" + ProtoPath)
 	}
 	if len(metadata.Ctrl.TemplateDir) > 0 {
-		return fmt.Sprintf("git.code.oa.com/tencent_abtest/code-generator:/template/") + metadata.Ctrl.TemplateDir
+		return fmt.Sprintf("github.com/submarineCluster/code-generator:/template/") + metadata.Ctrl.TemplateDir
 	}
-	return fmt.Sprintf("git.code.oa.com/tencent_abtest/code-generator:/template" + defaultTemp)
+	return fmt.Sprintf("github.com/submarineCluster/code-generator:/template" + defaultTemp)
 	//frame, err := callstack.CallFrame(0)
 	//if err != nil {
 	//	return "", errors.Wrapf(err, "CallFrame fail")

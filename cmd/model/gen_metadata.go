@@ -1,10 +1,10 @@
 package model
 
 import (
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
-	"git.code.oa.com/tencent_abtest/code-generator/utils/goenv"
-	"git.code.oa.com/tencent_abtest/code-generator/utils/nameutil"
 	"github.com/pkg/errors"
+	"github.com/submarineCluster/code-generator/conf"
+	"github.com/submarineCluster/code-generator/utils/goenv"
+	"github.com/submarineCluster/code-generator/utils/nameutil"
 )
 
 // GenMetadata gen metadata from env and cmd args

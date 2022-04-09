@@ -22,8 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/clean"
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"github.com/submarineCluster/code-generator/cmd/clean"
+	"github.com/submarineCluster/code-generator/conf"
 
 	"github.com/spf13/cobra"
 )

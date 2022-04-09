@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 package main
 
-import "git.code.oa.com/tencent_abtest/code-generator/cmd"
+import "github.com/submarineCluster/code-generator/cmd"
 
 func main() {
 	cmd.Execute() // 执行命令

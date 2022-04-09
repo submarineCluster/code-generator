@@ -24,8 +24,8 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/resource"
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"github.com/submarineCluster/code-generator/cmd/resource"
+	"github.com/submarineCluster/code-generator/conf"
 )
 
 // resourceCmd represents the resource command
@@ -41,7 +41,7 @@ code-generator resource will generator crud code for resource`,
 
 		//fmt.Printf("%v\n%v\n%v\n", ldflags.Version, ldflags.GOVersion, ldflags.BuildTime)
 		//
-		//upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/tencent_abtest/code-generator")
+		//upgradeCmd := exec.Command("go", "get", "-u", "github.com/submarineCluster/code-generator")
 		//log.Printf("%v", upgradeCmd.String())
 		//body, err := upgradeCmd.CombinedOutput()
 		//if err != nil {

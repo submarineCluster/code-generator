@@ -3,7 +3,7 @@ package log
 import (
 	"fmt"
 
-	"git.code.oa.com/tencent_abtest/code-generator/conf"
+	"github.com/submarineCluster/code-generator/conf"
 )
 
 //Printf ...

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
+	"github.com/submarineCluster/code-generator/cmd/model"
 )
 
 //Run ...

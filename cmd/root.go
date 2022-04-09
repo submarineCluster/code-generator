@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"os"
 
-	"git.code.oa.com/tencent_abtest/code-generator/utils/version"
+	"github.com/submarineCluster/code-generator/utils/version"
 
 	"github.com/spf13/cobra"
 
@@ -50,7 +50,7 @@ to quickly create a Cobra application.`,
 	//	Run: func(cmd *cobra.Command, args []string) { },
 	Version: version.GetVersion(),
 	PreRun: func(cmd *cobra.Command, args []string) {
-		//upgradeCmd := exec.Command("go", "get", "-u", "git.code.oa.com/tencent_abtest/code-generator")
+		//upgradeCmd := exec.Command("go", "get", "-u", "github.com/submarineCluster/code-generator")
 		//log.Printf("%v", upgradeCmd.String())
 		//body, err := upgradeCmd.CombinedOutput()
 		//if err != nil {

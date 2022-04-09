@@ -6,9 +6,9 @@ build:
 	golint ./...
 	pkger -include /template
 	go-xray -d .
-	go build -ldflags "-X git.code.oa.com/tencent_abtest/code-generator/ldflags.Version=1.0.0 \
-	-X 'git.code.oa.com/tencent_abtest/code-generator/ldflags.GOVersion=`go version`' \
-	-X 'git.code.oa.com/tencent_abtest/code-generator/ldflags.BuildTime=`date`'" .
+	go build -ldflags "-X github.com/submarineCluster/code-generator/ldflags.Version=1.0.0 \
+	-X 'github.com/submarineCluster/code-generator/ldflags.GOVersion=`go version`' \
+	-X 'github.com/submarineCluster/code-generator/ldflags.BuildTime=`date`'" .
 #	./code-generator clean -n demo
 #	./code-generator resource -n demo -s mongo --apiServer true
 	go vet ./...

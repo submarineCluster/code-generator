@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.code.oa.com/tencent_abtest/code-generator/ldflags"
+	"github.com/submarineCluster/code-generator/ldflags"
 
-	"git.code.oa.com/tencent_abtest/code-generator/utils/callstack"
+	"github.com/submarineCluster/code-generator/utils/callstack"
 )
 
 //GetVersion ...

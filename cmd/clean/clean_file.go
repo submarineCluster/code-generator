@@ -7,8 +7,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"git.code.oa.com/tencent_abtest/code-generator/cmd/model"
-	"git.code.oa.com/tencent_abtest/code-generator/utils/log"
+	"github.com/submarineCluster/code-generator/cmd/model"
+	"github.com/submarineCluster/code-generator/utils/log"
 )
 
 //clean ...

@@ -60,7 +60,7 @@
 
 ## Start
 
-> go get -u git.code.oa.com/tencent_abtest/code-generator
+> go get -u github.com/submarineCluster/code-generator
 
 ### Example
 

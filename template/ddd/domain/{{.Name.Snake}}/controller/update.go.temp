@@ -14,7 +14,7 @@ func (c *{{.Name.ExportedCamel}}Controller) Update(ctx context.Context, req *pb.
 	{{.Name.UnexportedCamel}}, err := c.Server.Update(ctx, req.{{.Name.ExportedCamel}})
 	if err != nil {
 		rsp.Result = &common.CommonResult{
-            Code:    common.Code_INTERNAL_SERVER_ERROR,
+            Code:    common.Code_INTERNAL_SERVER_ERR,
             Message: err.Error(),
         }
 		return nil

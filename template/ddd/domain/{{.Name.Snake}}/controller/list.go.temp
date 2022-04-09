@@ -15,7 +15,7 @@ func (c *{{.Name.ExportedCamel}}Controller) List(ctx context.Context, req *pb.Li
 	{{.Name.UnexportedCamel}}List, err := c.Server.List(ctx)
 	if err != nil {
 		rsp.Result = &common.CommonResult{
-            Code:    common.Code_INTERNAL_SERVER_ERROR,
+            Code:    common.Code_INTERNAL_SERVER_ERR,
             Message: err.Error(),
         }
 		return nil

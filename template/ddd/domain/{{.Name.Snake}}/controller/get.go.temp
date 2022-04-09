@@ -16,7 +16,7 @@ func (c *{{.Name.ExportedCamel}}Controller) Get(ctx context.Context, req *pb.Get
 	{{.Name.UnexportedCamel}}, err := c.Server.Get(ctx, meta.ID(req.Id))
 	if err != nil {
 		rsp.Result = &common.CommonResult{
-            Code:    common.Code_INTERNAL_SERVER_ERROR,
+            Code:    common.Code_INTERNAL_SERVER_ERR,
             Message: err.Error(),
         }
 		return nil

@@ -3,8 +3,8 @@ package dao
 
 import (
 	"context"
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+	"github.com/submarineCluster/code-component/model/meta"
+	"github.com/submarineCluster/code-component/model/option"
 	"git.code.oa.com/trpc-go/trpc-go/metrics"
 	"{{.ModuleName}}/domain/model"
 	"{{.ModuleName}}/conf"

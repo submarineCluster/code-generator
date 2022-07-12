@@ -3,7 +3,7 @@ package conf
 import (
 	"time"
 
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"github.com/submarineCluster/code-component/model/meta"
 )
 
 const (

@@ -109,7 +109,7 @@ func getRainbowEnvName() string {
 	case "pre":
 		return "pre"
 	case "formal":
-		return "Default" // TODO 为啥叫 Default
+		return "Default" // 正式
 	default:
 		return "test"
 	}

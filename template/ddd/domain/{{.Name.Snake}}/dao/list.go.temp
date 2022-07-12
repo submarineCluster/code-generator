@@ -4,7 +4,7 @@ package dao
 import (
 	"context"
 
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/option"
+	"github.com/submarineCluster/code-component/model/option"
 	"{{.ModuleName}}/domain/model"
 )
 

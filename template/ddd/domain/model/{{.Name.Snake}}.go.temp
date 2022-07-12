@@ -4,7 +4,7 @@ package model
 import (
 	"time"
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"github.com/submarineCluster/code-component/model/meta"
 	"github.com/pkg/errors"
 	"git.code.oa.com/trpcprotocol/tab/common"
 	"gorm.io/gorm"

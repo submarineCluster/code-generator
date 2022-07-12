@@ -4,7 +4,7 @@ package controller
 import (
 	"context"
 
-	"git.code.oa.com/tencent_abtest/go-common/code-components/model/meta"
+	"github.com/submarineCluster/code-component/model/meta"
 
 	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
 )

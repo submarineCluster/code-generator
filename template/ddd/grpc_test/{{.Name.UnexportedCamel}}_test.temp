@@ -1,0 +1,24 @@
+package grpc_test
+
+import (
+	"context"
+	pb "git.code.oa.com/trpcprotocol/tab/{{.Ctrl.ServerName}}"
+	"google.golang.org/grpc"
+	"testing"
+)
+
+func Test{{.Name.ExportedCamel}}(t *testing.T) {
+	addr := "0.0.0.0:8081"
+	conn, err := grpc.Dial(addr, grpc.WithInsecure())
+	if err != nil {
+		t.Fatalf("grpc dial:%v", err)
+	}
+	t.Run("get", func(t *testing.T) {
+		{{.Name.UnexportedCamel}}Client := pb.New{{.Name.ExportedCamel}}ServiceClientV2(conn)
+		{{.Name.UnexportedCamel}}, err := {{.Name.UnexportedCamel}}Client.Get(context.TODO(), &pb.Get{{.Name.ExportedCamel}}Request{Id: 123})
+		if err != nil {
+			t.Fatalf("get fail:%v", err)
+		}
+		t.Logf("%+v", {{.Name.UnexportedCamel}})
+	})
+}
